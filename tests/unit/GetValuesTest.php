@@ -27,6 +27,36 @@ class GetValuesTest extends TestCase
             'test_2',
             'test_3',
             'test_4',
-        ], TestEnum2::values());
+        ], TestEnum::values());
+    }
+
+    /**
+     * Check that the generated key using overidden property is correct.
+     *
+     * @return void
+     */
+    public function testGetLocalizedValuesFromEnum(): void
+    {
+        $this->assertEquals([
+            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_1',
+            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_2',
+            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_3',
+            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_4',
+        ], TestEnum::localizedValues());
+    }
+
+    /**
+     * Check that the generated key using overidden property is correct.
+     *
+     * @return void
+     */
+    public function testGetOverriddenLocalizedValuesFromEnum(): void
+    {
+        $this->assertEquals([
+            'test.test_1',
+            'test.test_2',
+            'test.test_3',
+            'test.test_4',
+        ], TestEnum2::localizedValues());
     }
 }
