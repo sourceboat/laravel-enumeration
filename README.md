@@ -59,15 +59,15 @@ Given the following enum:
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
+use Sourceboat\Enumeration\Enumeration;
 
 /**
- * @method static Administrator() // These are only for autocompletion etc.
- * @method static Moderator()
- * @method static Subscriber()
- * @method static SuperAdministrator()
+ * @method static \App\Enums\UserType Administrator() // These are only for autocompletion etc.
+ * @method static \App\Enums\UserType Moderator()
+ * @method static \App\Enums\UserType Subscriber()
+ * @method static \App\Enums\UserType SuperAdministrator()
  */
-final class UserType extends Enum
+final class UserType extends Enumeration
 {
     const Administrator = 0;
     const Moderator = 1;
