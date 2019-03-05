@@ -118,7 +118,7 @@ abstract class Enumeration extends AbstractEnumeration
      */
     public static function randomMember(?array $blacklist = [])
     {
-        return collect(self::mebersByBlacklist($blacklist))->random();
+        return collect(self::membersByBlacklist($blacklist))->random();
     }
 
     /**
