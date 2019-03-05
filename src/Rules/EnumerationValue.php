@@ -22,6 +22,13 @@ class EnumerationValue implements Rule
     private $values;
 
     /**
+     * Determine whether this rule should check case sensitive or not.
+     *
+     * @var bool
+     */
+    private $casesensitive = false;
+
+    /**
      * Create a new rule instance.
      *
      * @param string $enum The class of the enum to check.
@@ -45,7 +52,7 @@ class EnumerationValue implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            return $this->enumClass::memberByValue($value)
+            return $this->enumClass::memberByValue($value, $this->casesensitive)
                 ->anyOfArray($this->values ?? $this->enumClass::members());
         } catch (UndefinedMemberExceptionInterface $e) {
             return false;
@@ -60,5 +67,18 @@ class EnumerationValue implements Rule
     public function message(): string
     {
         return __('laravel_enumeration::validation.enum_value');
+    }
+
+    /**
+     * Set the case sensitivity for this rule.
+     *
+     * It is not recommended to set this to true for enums with number-values.
+     *
+     * @param bool $caseSensitive
+     * @return void
+     */
+    public function setCaseSensitivity(bool $caseSensitive): void
+    {
+        $this->casesensitive = $caseSensitive;
     }
 }
