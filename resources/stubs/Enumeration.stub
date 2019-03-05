@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyNamespace;
+
+use Sourceboat\Enumeration\Enumeration;
+
+/**
+ * @method static \DummyNamespace\DummyClass OptionOne()
+ * @method static \DummyNamespace\DummyClass OptionTwo()
+ * @method static \DummyNamespace\DummyClass OptionThree()
+ */
+final class DummyClass extends Enumeration
+{
+    public const OptionOne = 0;
+    public const OptionTwo = 1;
+    public const OptionThree = 2;
+}

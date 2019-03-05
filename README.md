@@ -1,5 +1,11 @@
 # laravel-enumeration
 
+[![Build Status](https://travis-ci.org/sourceboat/laravel-enumeration.svg?branch=master)](https://travis-ci.org/sourceboat/laravel-enumeration)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sourceboat/laravel-enumeration.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-enumeration)
+[![Packagist Stable Version](https://img.shields.io/packagist/v/sourceboat/laravel-enumeration.svg?style=flat-square&label=stable)](https://packagist.org/packages/sourceboat/laravel-enumeration)
+[![Packagist downloads](https://img.shields.io/packagist/dt/sourceboat/laravel-enumeration.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-enumeration)
+[![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
+
 Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](https://github.com/eloquent/enumeration) and inspired by [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum)
 
 ## Features
@@ -12,10 +18,7 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 * Localization support
 * Extendible
 
-[![Build Status](https://travis-ci.org/sourceboat/laravel-enumeration.svg?branch=master)](https://travis-ci.org/sourceboat/laravel-enumeration)
-[![Packagist Stable Version](https://img.shields.io/packagist/v/sourceboat/laravel-enumeration.svg?style=flat-square&label=stable)](https://packagist.org/packages/sourceboat/laravel-enumeration)
-[![Packagist downloads](https://img.shields.io/packagist/dt/sourceboat/laravel-enumeration.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-enumeration)
-[![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
+## Table of Contents
 
 * [Guide](#guide)
 * [Install](#install)
@@ -28,9 +31,9 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 
 ## Requirements
 
-eloquent/enumeration 6.0 or newer
-Laravel 5.4 or newer; Tested with 5.7
-PHP 7.1 or newer
+* eloquent/enumeration 6.0 or newer
+* Laravel 5.4 or newer; Tested with 5.7
+* PHP 7.1 or newer
 
 ## Install
 
@@ -104,7 +107,7 @@ UserType::values(); // Returns [0, 1, 2, 3]
 Returns the key for the given enum value.
 
 ``` php
-UserType::Modelerator()->key(); // Returns 'Moderator'
+UserType::Moderator()->key(); // Returns 'Moderator'
 ```
 
 ### value(): mixed
@@ -120,15 +123,23 @@ UserType::Moderator()->value(); // Returns 1
 Returns the localized version of the value, default path is `enums.<EnumClass>.<EnumValue>`, path can be overridden by setting `protected static $localizationPath`.
 
 ``` php
-UserType::SuperAdministrator()->localized(); // Returns for example 'Super Administrator', but `enums.UserType.3` when not set.
+UserType::SuperAdministrator()->localized(); // Returns for example 'Super Administrator', but `enums.App\Enums\UserType.3` when not set.
 ```
 
 ### static randomMember(): static
 
-Returns a random key from the enum. Useful for factories.
+Returns a random member from the enum. Useful for factories.
 
 ``` php
 UserType::randomMember(); // Returns Administrator(), Moderator(), Subscriber() or SuperAdministrator()
+```
+
+### static membersByBlacklist(?array): array
+
+Returns all members except the ones given.
+
+``` php
+UserType::membersByBlacklist([UserType::Moderator()]); // Returns Administrator(), Subscriber() and SuperAdministrator()
 ```
 
 ### static toSelectArray(): array
@@ -144,7 +155,7 @@ UserType::toSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2
 Returns the enum for use in a select as value => description, where description is localized using `->localized()`.
 
 ``` php
-UserType::toSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2 => 'Subscriber', 3 => 'Super Administrator']
+UserType::toLocalizedSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2 => 'Subscriber', 3 => 'Super Administrator']
 ```
 
 ## Validation
@@ -156,7 +167,10 @@ You may validate that an enum value passed to a controller is a valid value for 
 public function store(Request $request)
 {
     $this->validate($request, [
-        'user_type' => ['required', UserType::makeRule()], // Allows all enumeration values
+        'user_type' => [
+            'required',
+            UserType::makeRule(), // Allows all enumeration values
+        ],
     ]);
 }
 ```
@@ -165,7 +179,10 @@ public function store(Request $request)
 public function store(Request $request)
 {
     $this->validate($request, [
-        'user_type' => ['required', UserType::makeRuleWithWhitelist([UserType::Moderator(), UserType::Subscriber()])], // allows only the values `1` and `2`
+        'user_type' => [
+            'required',
+            UserType::makeRuleWithWhitelist([UserType::Moderator(), UserType::Subscriber()]), // allows only the values `1` and `2`
+        ],
     ]);
 }
 ```
@@ -174,16 +191,19 @@ public function store(Request $request)
 public function store(Request $request)
 {
     $this->validate($request, [
-        'user_type' => ['required', UserType::makeRuleWithBlacklist([UserType::SuperAdministrator(), UserType::Administrator()])], // allows all values but the values `0` and `3`
+        'user_type' => [
+            'required',
+            UserType::makeRuleWithBlacklist([UserType::SuperAdministrator(), UserType::Administrator()]), // allows all values but the values `0` and `3`
+        ],
     ]);
 }
 ```
 
 ## Localization
 
-You can translate the strings returned by the `getDescription` method using Laravel's built in [localization](https://laravel.com/docs/5.6/localization) features.
+You can translate the strings returned by the `localized` methods using Laravel's built in [localization](https://laravel.com/docs/5.6/localization) features.
 
-Add a new `enums.php` keys file for each of your supported languages. In this example there is one for English and one for Spanish.
+Add a new `enums.php` keys file for each of your supported languages. In this example there is one for English and one for Danish.
 
 ```php
 // resources/lang/en/enums.php
@@ -194,15 +214,14 @@ use App\Enums\UserType;
 return [
 
     UserType::class => [
-        UserType::Administrator => 'Administrator',
-        UserType::SuperAdministrator => 'Super administrator',
+        UserType::Moderator => 'Moderator',
     ],
 
 ];
 ```
 
 ```php
-// resources/lang/es/enums.php
+// resources/lang/da/enums.php
 <?php
 
 use App\Enums\UserType;
@@ -210,8 +229,7 @@ use App\Enums\UserType;
 return [
 
     UserType::class => [
-        UserType::Administrator => 'Administrador',
-        UserType::SuperAdministrator => 'Súper administrador',
+        UserType::Moderator => 'studievært',
     ],
 
 ];
@@ -229,5 +247,5 @@ This package is also licensed under the MIT license.
 
 ## TODOs
 
-* [ ]  Tests
+* [x]  Tests for all enumeration-functions and the rule.
 * [ ]  Model-Trait to enable casting of enumerations and "on the fly"-validation for enumeration values on models.
