@@ -134,6 +134,14 @@ Returns a random key from the enum. Useful for factories.
 UserType::randomMember(); // Returns Administrator(), Moderator(), Subscriber() or SuperAdministrator()
 ```
 
+### static membersByBlacklist(?array): array
+
+Returns all members except the ones given.
+
+``` php
+UserType::membersByBlacklist([UserType::Moderator()]); // Returns Administrator(), Subscriber() and SuperAdministrator()
+```
+
 ### static toSelectArray(): array
 
 Returns the enum for use in a select as value => description.
@@ -147,7 +155,7 @@ UserType::toSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2
 Returns the enum for use in a select as value => description, where description is localized using `->localized()`.
 
 ``` php
-UserType::toSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2 => 'Subscriber', 3 => 'Super Administrator']
+UserType::toLocalizedSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2 => 'Subscriber', 3 => 'Super Administrator']
 ```
 
 ## Validation
@@ -232,5 +240,5 @@ This package is also licensed under the MIT license.
 
 ## TODOs
 
-* [ ]  Tests
+* [x]  Tests for all enumeration-functions and the rule.
 * [ ]  Model-Trait to enable casting of enumerations and "on the fly"-validation for enumeration values on models.
