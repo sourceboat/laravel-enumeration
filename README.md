@@ -1,6 +1,7 @@
 # laravel-enumeration
 
 [![Build Status](https://travis-ci.org/sourceboat/laravel-enumeration.svg?branch=master)](https://travis-ci.org/sourceboat/laravel-enumeration)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sourceboat/laravel-enumeration.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-enumeration)
 [![Packagist Stable Version](https://img.shields.io/packagist/v/sourceboat/laravel-enumeration.svg?style=flat-square&label=stable)](https://packagist.org/packages/sourceboat/laravel-enumeration)
 [![Packagist downloads](https://img.shields.io/packagist/dt/sourceboat/laravel-enumeration.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-enumeration)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
