@@ -148,7 +148,7 @@ abstract class Enumeration extends AbstractEnumeration
      * @param array|null $blacklist the values allowed for this rule, all when left blank.
      * @return \Sourceboat\Enumeration\Rules\EnumerationValue
      */
-    public static function makeRuleWithBlacklist(?array $blacklist = []): string
+    public static function makeRuleWithBlacklist(?array $blacklist = []): EnumerationValue
     {
         return self::makeRuleWithWhitelist(self::membersByBlacklist($blacklist));
     }
