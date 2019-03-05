@@ -30,11 +30,11 @@
     },
     "require-dev": {
         "consistence/coding-standard": "3.7",
-        "slevomat/coding-standard": "4.8.7",
-        "squizlabs/php_codesniffer": "^3.4",
+        "orchestra/testbench": "~3.0",
         "phpmd/phpmd": "^2.6",
         "phpunit/phpunit": "7.3.*",
-        "orchestra/testbench": "3.7.*"
+        "slevomat/coding-standard": "4.8.7",
+        "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -47,9 +47,10 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
-        "check-style": "phpcs  -s & phpmd resources/lang,src,tests text phpmd.xml",
-        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "lint:phpcs": "vendor/bin/phpcs -s",
+        "lint:phpmd": "vendor/bin/phpmd config,src,tests text phpmd.xml"
     },
     "extra": {
         "branch-alias": {
