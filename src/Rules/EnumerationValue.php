@@ -46,7 +46,7 @@ class EnumerationValue implements Rule
     {
         try {
             return $this->enumClass::memberByValue($value)
-                ->isAnyOfArray($this->values ?? $this->enumClass::members());
+                ->anyOfArray($this->values ?? $this->enumClass::members());
         } catch (UndefinedMemberExceptionInterface $e) {
             return false;
         }
