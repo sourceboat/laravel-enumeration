@@ -107,7 +107,7 @@ UserType::values(); // Returns [0, 1, 2, 3]
 Returns the key for the given enum value.
 
 ``` php
-UserType::Modelerator()->key(); // Returns 'Moderator'
+UserType::Moderator()->key(); // Returns 'Moderator'
 ```
 
 ### value(): mixed
@@ -123,12 +123,12 @@ UserType::Moderator()->value(); // Returns 1
 Returns the localized version of the value, default path is `enums.<EnumClass>.<EnumValue>`, path can be overridden by setting `protected static $localizationPath`.
 
 ``` php
-UserType::SuperAdministrator()->localized(); // Returns for example 'Super Administrator', but `enums.UserType.3` when not set.
+UserType::SuperAdministrator()->localized(); // Returns for example 'Super Administrator', but `enums.App\Enums\UserType.3` when not set.
 ```
 
 ### static randomMember(): static
 
-Returns a random key from the enum. Useful for factories.
+Returns a random member from the enum. Useful for factories.
 
 ``` php
 UserType::randomMember(); // Returns Administrator(), Moderator(), Subscriber() or SuperAdministrator()
@@ -167,7 +167,10 @@ You may validate that an enum value passed to a controller is a valid value for 
 public function store(Request $request)
 {
     $this->validate($request, [
-        'user_type' => ['required', UserType::makeRule()], // Allows all enumeration values
+        'user_type' => [
+            'required',
+            UserType::makeRule(), // Allows all enumeration values
+        ],
     ]);
 }
 ```
@@ -176,7 +179,10 @@ public function store(Request $request)
 public function store(Request $request)
 {
     $this->validate($request, [
-        'user_type' => ['required', UserType::makeRuleWithWhitelist([UserType::Moderator(), UserType::Subscriber()])], // allows only the values `1` and `2`
+        'user_type' => [
+            'required',
+            UserType::makeRuleWithWhitelist([UserType::Moderator(), UserType::Subscriber()]), // allows only the values `1` and `2`
+        ],
     ]);
 }
 ```
@@ -185,16 +191,19 @@ public function store(Request $request)
 public function store(Request $request)
 {
     $this->validate($request, [
-        'user_type' => ['required', UserType::makeRuleWithBlacklist([UserType::SuperAdministrator(), UserType::Administrator()])], // allows all values but the values `0` and `3`
+        'user_type' => [
+            'required',
+            UserType::makeRuleWithBlacklist([UserType::SuperAdministrator(), UserType::Administrator()]), // allows all values but the values `0` and `3`
+        ],
     ]);
 }
 ```
 
 ## Localization
 
-You can translate the strings returned by the `getDescription` method using Laravel's built in [localization](https://laravel.com/docs/5.6/localization) features.
+You can translate the strings returned by the `localized` methods using Laravel's built in [localization](https://laravel.com/docs/5.6/localization) features.
 
-Add a new `enums.php` keys file for each of your supported languages. In this example there is one for English and one for Spanish.
+Add a new `enums.php` keys file for each of your supported languages. In this example there is one for English and one for Danish.
 
 ```php
 // resources/lang/en/enums.php
@@ -205,15 +214,14 @@ use App\Enums\UserType;
 return [
 
     UserType::class => [
-        UserType::Administrator => 'Administrator',
-        UserType::SuperAdministrator => 'Super administrator',
+        UserType::Moderator => 'Moderator',
     ],
 
 ];
 ```
 
 ```php
-// resources/lang/es/enums.php
+// resources/lang/da/enums.php
 <?php
 
 use App\Enums\UserType;
@@ -221,8 +229,7 @@ use App\Enums\UserType;
 return [
 
     UserType::class => [
-        UserType::Administrator => 'Administrador',
-        UserType::SuperAdministrator => 'Súper administrador',
+        UserType::Moderator => 'studievært',
     ],
 
 ];
