@@ -14,9 +14,12 @@
         "extendible"
     ],
     "license": "MIT",
+    "homepage": "https://github.com/sourceboat/laravel-enumeration",
     "authors": [
         {
             "name": "Kevin Buchholz",
+            "email": "kevin@sourceboat.com",
+            "homepage": "https://sourceboat.com",
             "role": "Developer"
         }
     ],
@@ -45,7 +48,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "check-style": "phpcs  -s & phpmd resources/lang,src,tests text phpmd.xml",
         "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
     },
     "extra": {
