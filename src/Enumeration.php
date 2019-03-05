@@ -2,7 +2,7 @@
 
 namespace Sourceboat\Enumeration;
 
-use Eloquent\Enumeration\Enumerationeration;
+use Eloquent\Enumeration\AbstractEnumeration;
 use Sourceboat\Enumeration\Rules\EnumerationValue;
 
 /**
@@ -10,7 +10,7 @@ use Sourceboat\Enumeration\Rules\EnumerationValue;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-abstract class Enumeration extends Enumerationeration
+abstract class Enumeration extends AbstractEnumeration
 {
     /**
      * Path to the localization for the enum-values.
