@@ -152,4 +152,15 @@ abstract class Enumeration extends AbstractEnumeration
     {
         return self::makeRuleWithWhitelist(self::membersByBlacklist($blacklist));
     }
+
+    /**
+     * Returns a string representation of this member.
+     *
+     * @return string The string representation.
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
+     */
+    public function __toString()
+    {
+        return $this->value();
+    }
 }
