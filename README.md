@@ -161,7 +161,7 @@ UserType::toLocalizedSelectArray(); // Returns [0 => 'Administrator', 1 => 'Mode
 ## Validation
 
 ### Array Validation
-You may validate that an enum value passed to a controller is a valid value for a given enum by using the `EnumerationValue` rule, for easier handling there are helper methods for creating the rule: `Enumeraction::makeRule()`, `Enumeration::makeRuleWithWhitelist($whitelist)` and `Enumeration::makeRuleWithBlacklist($blacklist)`.
+You may validate that an enum value passed to a controller is a valid value for a given enum by using the `EnumerationValue` rule, for easier handling there are helper methods for creating the rule: `Enumeration::makeRule()`, `Enumeration::makeRuleWithWhitelist($whitelist)` and `Enumeration::makeRuleWithBlacklist($blacklist)`.
 
 ``` php
 public function store(Request $request)
