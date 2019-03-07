@@ -154,6 +154,17 @@ abstract class Enumeration extends AbstractEnumeration
     }
 
     /**
+     * Get the default enum member.
+     * Override for your own value / logic.
+     *
+     * @return static
+     */
+    public static function getDefaultMember()
+    {
+        return collect(static::members())->first();
+    }
+
+    /**
      * Returns a string representation of this member.
      *
      * @return string The string representation.
