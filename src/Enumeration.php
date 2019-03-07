@@ -172,6 +172,6 @@ abstract class Enumeration extends AbstractEnumeration
      */
     public function __toString()
     {
-        return $this->value();
+        return (string) $this->value();
     }
 }
