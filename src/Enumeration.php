@@ -135,7 +135,7 @@ abstract class Enumeration extends AbstractEnumeration
      * Get a laravel validation rule for this enum as whitelist.
      *
      * @param array|null $whitelist the values allowed for this rule, all when left blank.
-     * @return string
+     * @return \Sourceboat\Enumeration\Rules\EnumerationValue
      */
     public static function makeRuleWithWhitelist(?array $whitelist = null): EnumerationValue
     {
