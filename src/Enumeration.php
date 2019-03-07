@@ -159,7 +159,7 @@ abstract class Enumeration extends AbstractEnumeration
      *
      * @return static
      */
-    public static function getDefaultMember()
+    public static function defaultMember()
     {
         return collect(static::members())->first();
     }

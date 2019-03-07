@@ -62,7 +62,7 @@ trait HasEnums
             try {
                 return $class::memberByValue($this->getAttributeFromArray($key));
             } catch (UndefinedMemberException $e) {
-                return $class::getDefaultMember();
+                return $class::defaultMember();
             }
         }
 
@@ -80,7 +80,7 @@ trait HasEnums
     public function setAttribute($key, $value)
     {
         if ($this->isEnumAttribute($key)) {
-            $class = $this->getEnumArray()[$key];
+            $class = $this->getEnumsArray()[$key];
 
             if (! $value instanceof $class) {
                 $value = $class::memberByValue($value);
