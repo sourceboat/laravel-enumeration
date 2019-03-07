@@ -25,7 +25,7 @@ class ModelHasEnumsTraitTest extends TestCase
 
     /**
      * Check if the validation when setting an enum-property
-     * with a wrong value thrwos an exception.
+     * with a wrong value throws an exception.
      */
     public function testSetterValidationWithWrongValue(): void
     {
@@ -39,7 +39,7 @@ class ModelHasEnumsTraitTest extends TestCase
 
     /**
      * Check if the validation when setting an enum-property
-     * with a correct skalar value thrwos no exception.
+     * with a correct skalar value throws no exception.
      */
     public function testSetterValidationWithCorrectSkalarValue(): void
     {
@@ -54,7 +54,7 @@ class ModelHasEnumsTraitTest extends TestCase
 
     /**
      * Check if the validation when setting an enum-property
-     * with a correct skalar value thrwos no exception.
+     * with a correct skalar value throws no exception.
      */
     public function testSetterValidationWithCorrectMember(): void
     {
