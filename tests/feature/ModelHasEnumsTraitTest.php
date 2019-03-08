@@ -24,6 +24,15 @@ class ModelHasEnumsTraitTest extends TestCase
     }
 
     /**
+     * Check if null gets returned from attribute
+     * access when the attribute is null and set as nullable.
+     */
+    public function testGetNullWhenNotSetAndNullable(): void
+    {
+        $this->assertNull($this->model->test2);
+    }
+
+    /**
      * Check if the validation when setting an enum-property
      * with a wrong value throws an exception.
      */
@@ -47,6 +56,24 @@ class ModelHasEnumsTraitTest extends TestCase
             $this->model->test = 'test_2';
             $this->assertTrue(true);
             $this->assertEquals(TestEnum::TEST2(), $this->model->test);
+        } catch (UndefinedMemberException $e) {
+            $this->assertTrue(false, 'Correct value was rejected');
+        }
+    }
+
+    /**
+     * Check if the validation when setting an enum-property
+     * with a correct value of null throws no exception.
+     */
+    public function testSetterValidationWithCorrectNullValue(): void
+    {
+        try {
+            $this->model->test2 = TestEnum2::TEST2();
+            $this->assertEquals(TestEnum2::TEST2(), $this->model->test2);
+
+            $this->model->test2 = null;
+            $this->assertTrue(true);
+            $this->assertNull($this->model->test2);
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(false, 'Correct value was rejected');
         }

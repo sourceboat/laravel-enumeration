@@ -11,5 +11,6 @@ class TestModel extends Model
 
     protected $enums = [
         'test' => TestEnum::class,
+        'test2' => [ 'nullable' => true, 'enum' => TestEnum2::class ],
     ];
 }
