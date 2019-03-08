@@ -26,7 +26,7 @@ trait HasEnums
      * @param string $key
      * @return bool
      */
-    protected function isEnumAttribute(string $key): bool
+    public function isEnumAttribute(string $key): bool
     {
         return isset($this->getEnumsArray()[$key]);
     }
