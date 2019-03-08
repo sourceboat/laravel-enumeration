@@ -58,10 +58,20 @@ trait HasEnums
     {
         if ($this->isEnumAttribute($key)) {
             $class = $this->getEnumsArray()[$key];
+            $nullable = false;
+
+            if (is_array($class)) {
+                $nullable = $class['nullable'];
+                $class = $class['enum'];
+            }
 
             try {
                 return $class::memberByValue($this->getAttributeFromArray($key));
             } catch (UndefinedMemberException $e) {
+                if ($nullable && is_null($this->getAttributeFromArray($key))) {
+                    return null;
+                }
+
                 return $class::defaultMember();
             }
         }
@@ -81,6 +91,18 @@ trait HasEnums
     {
         if ($this->isEnumAttribute($key)) {
             $class = $this->getEnumsArray()[$key];
+            $nullable = false;
+
+            if (is_array($class)) {
+                $nullable = $class['nullable'];
+                $class = $class['enum'];
+            }
+
+            if ($nullable && is_null($value)) {
+                $this->attributes[$key] = $value;
+
+                return $this;
+            }
 
             if (! $value instanceof $class) {
                 $value = $class::memberByValue($value);
