@@ -41,22 +41,6 @@ trait HasEnums
     public function getAttribute($key)
     {
         if ($this->isEnumAttribute($key)) {
-            return $this->getAttributeValue($key);
-        }
-
-        return parent::getAttribute($key);
-    }
-
-    /**
-     * Get a plain attribute.
-     *
-     * @param string $key
-     * @return mixed
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
-     */
-    public function getAttributeValue($key)
-    {
-        if ($this->isEnumAttribute($key)) {
             $class = $this->getEnumsArray()[$key];
             $nullable = false;
 
@@ -76,7 +60,7 @@ trait HasEnums
             }
         }
 
-        return parent::getAttributeValue($key);
+        return parent::getAttribute($key);
     }
 
     /**
