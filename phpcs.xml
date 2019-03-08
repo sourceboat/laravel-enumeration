@@ -3,7 +3,6 @@
   <description>The coding standard for this project.</description>
 
   <!-- files and folders to check -->
-  <file>resources/lang</file>
   <file>src</file>
   <file>tests</file>
 
