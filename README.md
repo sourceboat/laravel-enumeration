@@ -27,7 +27,8 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 * [Methods](#methods)
 * [Validation](#validation)
 * [Localization](#localization)
-* [License information](#license-infromation)
+* [License information](#license-information)
+* [Model Trait](#model-trait)
 
 ## Requirements
 
@@ -134,6 +135,14 @@ Returns a random member from the enum. Useful for factories.
 UserType::randomMember(); // Returns Administrator(), Moderator(), Subscriber() or SuperAdministrator()
 ```
 
+### static defaultMember(): static
+
+Returns the default member for the enum. This function defaults to the first member of the enum when not overridden.
+
+``` php
+UserType::defaultMember(); // Returns Administrator()
+```
+
 ### static membersByBlacklist(?array): array
 
 Returns all members except the ones given.
@@ -161,7 +170,7 @@ UserType::toLocalizedSelectArray(); // Returns [0 => 'Administrator', 1 => 'Mode
 ## Validation
 
 ### Array Validation
-You may validate that an enum value passed to a controller is a valid value for a given enum by using the `EnumerationValue` rule, for easier handling there are helper methods for creating the rule: `Enumeration::makeRule()`, `Enumeration::makeRuleWithWhitelist($whitelist)` and `Enumeration::makeRuleWithBlacklist($blacklist)`.
+You may validate that a value passed to a controller is a valid value for a given enum by using the `EnumerationValue` rule, for easier handling there are helper methods for creating the rule: `Enumeration::makeRule()`, `Enumeration::makeRuleWithWhitelist($whitelist)` and `Enumeration::makeRuleWithBlacklist($blacklist)`.
 
 ``` php
 public function store(Request $request)
@@ -223,7 +232,6 @@ return [
 ```php
 // resources/lang/da/enums.php
 <?php
-
 use App\Enums\UserType;
 
 return [
@@ -233,6 +241,64 @@ return [
     ],
 
 ];
+```
+
+## Model Trait
+
+You can use the `HasEnums` trait to enable automatic casting of properties to enums. When used, it also automatically checks if a value set to an enum property is valid, if not it throws an `UndefinedMemberException`.
+
+To enable this functionality you will have to use the trait and set the enums property on your model.
+
+```php
+<?php
+
+namespace App\Models;
+
+use App\Enums\UserType;
+use Illuminate\Database\Eloquent\Model;
+use Sourceboat\Enumeration\Traits\HasEnums;
+
+class User extends Model
+{
+    use HasEnums;
+
+    protected $enums = [
+        'type' => UserType::class,
+    ];
+}
+```
+
+The enums property is simply a mapping of model attributes to enum classes. For cases where you want an attribute to be nullable, but dont want to have a `null`-value member in your enum, you can specifiy if an attribute is nullable by setting it in the enums propoerty like so:
+
+```php
+<?php
+
+namespace App\Models;
+
+use App\Enums\UserType;
+use Illuminate\Database\Eloquent\Model;
+use Sourceboat\Enumeration\Traits\HasEnums;
+
+class User extends Model
+{
+    use HasEnums;
+
+    protected $enums = [
+        'type' => [ 'nullable' => true, 'enum' => UserType::class ],
+    ];
+}
+```
+
+If the casted attribute is not set to be nullable and/or has a value not represented by the enum, you will get the default member of the enum when accessing the attribute.
+
+```php
+// for example when the value has been changed manually in the database, say its `10`
+$type = $user->type
+
+// then this will be the case:
+
+echo $type === UserType::defaultMember(); // "true"
+echo $type->value; // "0"
 ```
 
 ## License information
