@@ -39,14 +39,14 @@ class HasEnumsTraitMethodsTest extends TestCase
 
     public function testGetAttributeValue(): void
     {
-        $this->assertEquals(TestEnum::defaultMember(), $this->model->getAttribute('test'));
+        $this->assertEquals(TestEnum::defaultMember(), $this->model->getAttributeValue('test'));
 
         $this->model->test = TestEnum::TEST3();
 
-        $this->assertEquals(TestEnum::TEST3(), $this->model->getAttribute('test'));
+        $this->assertEquals(TestEnum::TEST3(), $this->model->getAttributeValue('test'));
 
-        $this->assertNull($this->model->getAttribute('test2'));
-        $this->assertNull($this->model->getAttribute('test3'));
+        $this->assertNull($this->model->getAttributeValue('test2'));
+        $this->assertNull($this->model->getAttributeValue('test3'));
     }
 
     public function testSetAttribute(): void
