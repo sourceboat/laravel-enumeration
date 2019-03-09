@@ -315,4 +315,4 @@ This package is also licensed under the MIT license.
 ## TODOs
 
 * [x]  Tests for all enumeration-functions and the rule.
-* [ ]  Model-Trait to enable casting of enumerations and "on the fly"-validation for enumeration values on models.
+* [x]  Model-Trait to enable casting of enumerations and "on the fly"-validation for enumeration values on models.
