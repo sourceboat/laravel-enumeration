@@ -27,8 +27,8 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 * [Methods](#methods)
 * [Validation](#validation)
 * [Localization](#localization)
-* [License information](#license-information)
 * [Model Trait](#model-trait)
+* [License information](#license-information)
 
 ## Requirements
 
