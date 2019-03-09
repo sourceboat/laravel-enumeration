@@ -151,17 +151,18 @@ Returns all members except the ones given.
 UserType::membersByBlacklist([UserType::Moderator()]); // Returns Administrator(), Subscriber() and SuperAdministrator()
 ```
 
-### static toSelectArray(): array
+### static toSelectArray(?array): array
 
-Returns the enum for use in a select as value => description.
+Returns the enum for use in a select as value => key. It is also possible to set an optional blacklist-parameter to filter the returned values.
 
 ``` php
 UserType::toSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2 => 'Subscriber', 3 => 'SuperAdministrator']
 ```
 
-### toLocalizedSelectArray(): array
+### toLocalizedSelectArray(?array): array
 
-Returns the enum for use in a select as value => description, where description is localized using `->localized()`.
+Returns the enum for use in a select as value => localizedValue, where localizedValue is localized using `->localized()`.
+Like `toSelectArray` it is possible to set an optional blacklist-parameter to filter the returned values.
 
 ``` php
 UserType::toLocalizedSelectArray(); // Returns [0 => 'Administrator', 1 => 'Moderator', 2 => 'Subscriber', 3 => 'Super Administrator']
