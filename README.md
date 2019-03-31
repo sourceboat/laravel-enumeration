@@ -269,7 +269,7 @@ class User extends Model
 }
 ```
 
-The enums property is simply a mapping of model attributes to enum classes. For cases where you want an attribute to be nullable, but dont want to have a `null`-value member in your enum, you can specifiy if an attribute is nullable by setting it in the enums propoerty like so:
+The enums property is a simple mapping of model attributes to enum classes. For cases where you want an attribute to be nullable, but don't want to have a `null`-value member in your enum, you can specify this explicitly:
 
 ```php
 <?php
@@ -293,10 +293,10 @@ class User extends Model
 If the casted attribute is not set to be nullable and/or has a value not represented by the enum, you will get the default member of the enum when accessing the attribute.
 
 ```php
-// for example when the value has been changed manually in the database, say its `10`
+// For example when the value has been changed manually in the database. Let's say the type is `10`.
 $type = $user->type
 
-// then this will be the case:
+// Then the following will be the case:
 
 echo $type === UserType::defaultMember(); // "true"
 echo $type->value; // "0"

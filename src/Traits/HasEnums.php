@@ -21,7 +21,7 @@ trait HasEnums
     }
 
     /**
-     * Returns whether the attribute was marked as enum
+     * Returns whether the attribute was marked as enum.
      *
      * @param string $key
      * @return bool

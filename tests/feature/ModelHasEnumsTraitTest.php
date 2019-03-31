@@ -15,7 +15,7 @@ class ModelHasEnumsTraitTest extends TestCase
 
     /**
      * Check if the default member gets returned from attribute
-     * access when the attribute is null (or a value not represented by the enum)
+     * access when the attribute is null (or a value not represented by the enum).
      */
     public function testGetDefaultMemberWhenNotSet(): void
     {
@@ -48,7 +48,7 @@ class ModelHasEnumsTraitTest extends TestCase
 
     /**
      * Check if the validation when setting an enum-property
-     * with a correct skalar value throws no exception.
+     * with a correct scalar value throws no exception.
      */
     public function testSetterValidationWithCorrectSkalarValue(): void
     {
