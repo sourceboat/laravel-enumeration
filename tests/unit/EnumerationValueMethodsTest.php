@@ -11,7 +11,7 @@ class EnumerationValueMethodsTest extends TestCase
         parent::setUp();
 
         $this->rule = new EnumerationValue(UserRole::class, UserRole::membersByBlacklist([UserRole::ADMIN()]));
-        $this->rule2 = new EnumerationValue(TestEnum2::class);
+        $this->rule2 = new EnumerationValue(FruitType::class);
     }
 
     public function testPasses(): void
@@ -23,10 +23,10 @@ class EnumerationValueMethodsTest extends TestCase
         $this->assertFalse($this->rule->passes(null, 'reporter'));
         $this->assertFalse($this->rule->passes(null, 5));
 
-        $this->assertTrue($this->rule2->passes(null, TestEnum2::TEST1()->value()));
-        $this->assertTrue($this->rule2->passes(null, TestEnum2::TEST2()->value()));
-        $this->assertTrue($this->rule2->passes(null, TestEnum2::TEST3()->value()));
-        $this->assertTrue($this->rule2->passes(null, TestEnum2::TEST4()->value()));
+        $this->assertTrue($this->rule2->passes(null, FruitType::BERRY()->value()));
+        $this->assertTrue($this->rule2->passes(null, FruitType::NUT()->value()));
+        $this->assertTrue($this->rule2->passes(null, FruitType::ACCESSORY_FRUIT()->value()));
+        $this->assertTrue($this->rule2->passes(null, FruitType::LEGUME()->value()));
         $this->assertFalse($this->rule2->passes(null, 'test'));
         $this->assertFalse($this->rule2->passes(null, 5));
     }

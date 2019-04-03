@@ -23,10 +23,10 @@ class GetKeysTest extends TestCase
     public function testGetKeysFromEnum(): void
     {
         $this->assertEquals([
-            'TEST1',
-            'TEST2',
-            'TEST3',
-            'TEST4',
-        ], TestEnum2::keys());
+            'BERRY',
+            'NUT',
+            'ACCESSORY_FRUIT',
+            'LEGUME',
+        ], FruitType::keys());
     }
 }

@@ -20,7 +20,7 @@ class HasEnumsTraitMethodsTest extends TestCase
         $this->assertEquals([], $this->model2->getEnumsArray());
         $this->assertEquals([
             'role' => UserRole::class,
-            'test2' => [ 'nullable' => true, 'enum' => TestEnum2::class ],
+            'type' => [ 'nullable' => true, 'enum' => FruitType::class ],
         ], $this->model->getEnumsArray());
     }
 
@@ -38,7 +38,7 @@ class HasEnumsTraitMethodsTest extends TestCase
 
         $this->assertEquals(UserRole::SUPER_ADMIN(), $this->model->getAttribute('role'));
 
-        $this->assertNull($this->model->getAttribute('test2'));
+        $this->assertNull($this->model->getAttribute('type'));
         $this->assertNull($this->model->getAttribute('roles'));
     }
 
@@ -73,17 +73,17 @@ class HasEnumsTraitMethodsTest extends TestCase
         }
 
         try {
-            $this->model->setAttribute('test2', null);
+            $this->model->setAttribute('type', null);
             $this->assertTrue(true);
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(false, 'Correct value "null" was rejected');
         }
 
         try {
-            $this->model->setAttribute('test2', TestEnum2::TEST3());
+            $this->model->setAttribute('type', FruitType::ACCESSORY_FRUIT());
             $this->assertTrue(true);
         } catch (UndefinedMemberException $e) {
-            $this->assertTrue(false, 'Correct value "TestEnum2::TEST3()" was rejected');
+            $this->assertTrue(false, 'Correct value "FruitType::ACCESSORY_FRUIT()" was rejected');
         }
 
         try {

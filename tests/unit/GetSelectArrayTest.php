@@ -42,11 +42,11 @@ class GetSelectArrayTest extends TestCase
     public function testGetOverriddenLocalizedSelectArrayFromEnum(): void
     {
         $this->assertEquals([
-            'test_1' => 'test.test_1',
-            'test_2' => 'test.test_2',
-            'test_3' => 'test.test_3',
-            'test_4' => 'test.test_4',
-        ], TestEnum2::toLocalizedSelectArray());
+            'berry' => 'test.berry',
+            'nut' => 'test.nut',
+            'accessory_fruit' => 'test.accessory_fruit',
+            'legume' => 'test.legume',
+        ], FruitType::toLocalizedSelectArray());
     }
 
     /**
@@ -88,9 +88,9 @@ class GetSelectArrayTest extends TestCase
     public function testGetOverriddenLocalizedSelectArrayFromEnumWithBlacklist(): void
     {
         $this->assertEquals([
-            'test_1' => 'test.test_1',
-            'test_3' => 'test.test_3',
-            'test_4' => 'test.test_4',
-        ], TestEnum2::toLocalizedSelectArray([TestEnum2::TEST2()]));
+            'berry' => 'test.berry',
+            'accessory_fruit' => 'test.accessory_fruit',
+            'legume' => 'test.legume',
+        ], FruitType::toLocalizedSelectArray([FruitType::NUT()]));
     }
 }

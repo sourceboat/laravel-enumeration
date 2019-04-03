@@ -29,7 +29,7 @@ class ModelHasEnumsTraitTest extends TestCase
      */
     public function testGetNullWhenNotSetAndNullable(): void
     {
-        $this->assertNull($this->model->test2);
+        $this->assertNull($this->model->type);
     }
 
     /**
@@ -68,12 +68,12 @@ class ModelHasEnumsTraitTest extends TestCase
     public function testSetterValidationWithCorrectNullValue(): void
     {
         try {
-            $this->model->test2 = TestEnum2::TEST2();
-            $this->assertEquals(TestEnum2::TEST2(), $this->model->test2);
+            $this->model->type = FruitType::NUT();
+            $this->assertEquals(FruitType::NUT(), $this->model->type);
 
-            $this->model->test2 = null;
+            $this->model->type = null;
             $this->assertTrue(true);
-            $this->assertNull($this->model->test2);
+            $this->assertNull($this->model->type);
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(false, 'Correct value was rejected');
         }

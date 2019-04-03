@@ -24,6 +24,6 @@ class LocalizeTest extends TestCase
      */
     public function testGetCorrectOverrideKey(): void
     {
-        $this->assertEquals('test.test_1', TestEnum2::TEST1()->localized());
+        $this->assertEquals('test.berry', FruitType::BERRY()->localized());
     }
 }

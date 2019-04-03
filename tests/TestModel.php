@@ -11,6 +11,6 @@ class TestModel extends Model
 
     protected $enums = [
         'role' => UserRole::class,
-        'test2' => [ 'nullable' => true, 'enum' => TestEnum2::class ],
+        'type' => [ 'nullable' => true, 'enum' => FruitType::class ],
     ];
 }

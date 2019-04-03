@@ -53,10 +53,10 @@ class GetValuesTest extends TestCase
     public function testGetOverriddenLocalizedValuesFromEnum(): void
     {
         $this->assertEquals([
-            'test.test_1',
-            'test.test_2',
-            'test.test_3',
-            'test.test_4',
-        ], TestEnum2::localizedValues());
+            'test.berry',
+            'test.nut',
+            'test.accessory_fruit',
+            'test.legume',
+        ], FruitType::localizedValues());
     }
 }
