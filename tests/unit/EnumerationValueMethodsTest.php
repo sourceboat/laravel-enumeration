@@ -10,17 +10,17 @@ class EnumerationValueMethodsTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new EnumerationValue(TestEnum::class, TestEnum::membersByBlacklist([TestEnum::TEST2()]));
+        $this->rule = new EnumerationValue(UserRole::class, UserRole::membersByBlacklist([UserRole::ADMIN()]));
         $this->rule2 = new EnumerationValue(TestEnum2::class);
     }
 
     public function testPasses(): void
     {
-        $this->assertTrue($this->rule->passes(null, TestEnum::TEST1()->value()));
-        $this->assertFalse($this->rule->passes(null, TestEnum::TEST2()->value()));
-        $this->assertTrue($this->rule->passes(null, TestEnum::TEST3()->value()));
-        $this->assertTrue($this->rule->passes(null, TestEnum::TEST4()->value()));
-        $this->assertFalse($this->rule->passes(null, 'test'));
+        $this->assertTrue($this->rule->passes(null, UserRole::MODERATOR()->value()));
+        $this->assertFalse($this->rule->passes(null, UserRole::ADMIN()->value()));
+        $this->assertTrue($this->rule->passes(null, UserRole::SUPER_ADMIN()->value()));
+        $this->assertTrue($this->rule->passes(null, UserRole::USER()->value()));
+        $this->assertFalse($this->rule->passes(null, 'reporter'));
         $this->assertFalse($this->rule->passes(null, 5));
 
         $this->assertTrue($this->rule2->passes(null, TestEnum2::TEST1()->value()));
@@ -38,12 +38,12 @@ class EnumerationValueMethodsTest extends TestCase
 
     public function testSetCaseSensitivity(): void
     {
-        $this->assertTrue($this->rule->passes(null, 'test_1'));
-        $this->assertTrue($this->rule->passes(null, 'TeSt_1'));
+        $this->assertTrue($this->rule->passes(null, 'moderator'));
+        $this->assertTrue($this->rule->passes(null, 'ModerATor'));
 
         $this->rule->setCaseSensitivity(true);
 
-        $this->assertTrue($this->rule->passes(null, 'test_1'));
-        $this->assertFalse($this->rule->passes(null, 'TeSt_1'));
+        $this->assertTrue($this->rule->passes(null, 'moderator'));
+        $this->assertFalse($this->rule->passes(null, 'ModerATor'));
     }
 }

@@ -11,7 +11,7 @@ class GetValuesTest extends TestCase
      */
     public function testGetSingleValue(): void
     {
-        $this->assertEquals('test_1', TestEnum::TEST1()->value());
+        $this->assertEquals('moderator', UserRole::MODERATOR()->value());
     }
 
     /**
@@ -23,11 +23,11 @@ class GetValuesTest extends TestCase
     public function testGetValuesFromEnum(): void
     {
         $this->assertEquals([
-            'test_1',
-            'test_2',
-            'test_3',
-            'test_4',
-        ], TestEnum::values());
+            'moderator',
+            'admin',
+            'super_admin',
+            'user',
+        ], UserRole::values());
     }
 
     /**
@@ -38,11 +38,11 @@ class GetValuesTest extends TestCase
     public function testGetLocalizedValuesFromEnum(): void
     {
         $this->assertEquals([
-            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_1',
-            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_2',
-            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_3',
-            'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_4',
-        ], TestEnum::localizedValues());
+            'enums.Sourceboat\\Enumeration\\Tests\\UserRole.moderator',
+            'enums.Sourceboat\\Enumeration\\Tests\\UserRole.admin',
+            'enums.Sourceboat\\Enumeration\\Tests\\UserRole.super_admin',
+            'enums.Sourceboat\\Enumeration\\Tests\\UserRole.user',
+        ], UserRole::localizedValues());
     }
 
     /**

@@ -11,7 +11,7 @@ class GetKeysTest extends TestCase
      */
     public function testGetSingleKey(): void
     {
-        $this->assertEquals('TEST1', TestEnum::TEST1()->key());
+        $this->assertEquals('MODERATOR', UserRole::MODERATOR()->key());
     }
 
     /**

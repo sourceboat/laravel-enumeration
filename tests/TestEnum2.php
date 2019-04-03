@@ -5,10 +5,10 @@ namespace Sourceboat\Enumeration\Tests;
 use Sourceboat\Enumeration\Enumeration;
 
 /**
- * @method static \Sourceboat\Enumeration\Tests\TestEnum TEST1()
- * @method static \Sourceboat\Enumeration\Tests\TestEnum TEST2()
- * @method static \Sourceboat\Enumeration\Tests\TestEnum TEST3()
- * @method static \Sourceboat\Enumeration\Tests\TestEnum TEST4()
+ * @method static \Sourceboat\Enumeration\Tests\UserRole TEST1()
+ * @method static \Sourceboat\Enumeration\Tests\UserRole TEST2()
+ * @method static \Sourceboat\Enumeration\Tests\UserRole TEST3()
+ * @method static \Sourceboat\Enumeration\Tests\UserRole TEST4()
  */
 class TestEnum2 extends Enumeration
 {

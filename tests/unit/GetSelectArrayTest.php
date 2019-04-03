@@ -12,11 +12,11 @@ class GetSelectArrayTest extends TestCase
     public function testGetSelectArrayFromEnum(): void
     {
         $this->assertEquals([
-            'test_1' => 'TEST1',
-            'test_2' => 'TEST2',
-            'test_3' => 'TEST3',
-            'test_4' => 'TEST4',
-        ], TestEnum::toSelectArray());
+            'moderator' => 'MODERATOR',
+            'admin' => 'ADMIN',
+            'super_admin' => 'SUPER_ADMIN',
+            'user' => 'USER',
+        ], UserRole::toSelectArray());
     }
 
     /**
@@ -27,11 +27,11 @@ class GetSelectArrayTest extends TestCase
     public function testGetLocalizedSelectArrayFromEnum(): void
     {
         $this->assertEquals([
-            'test_1' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_1',
-            'test_2' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_2',
-            'test_3' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_3',
-            'test_4' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_4',
-        ], TestEnum::toLocalizedSelectArray());
+            'moderator' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.moderator',
+            'admin' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.admin',
+            'super_admin' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.super_admin',
+            'user' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.user',
+        ], UserRole::toLocalizedSelectArray());
     }
 
     /**
@@ -58,10 +58,10 @@ class GetSelectArrayTest extends TestCase
     public function testGetSelectArrayFromEnumWithBlacklist(): void
     {
         $this->assertEquals([
-            'test_2' => 'TEST2',
-            'test_3' => 'TEST3',
-            'test_4' => 'TEST4',
-        ], TestEnum::toSelectArray([TestEnum::TEST1()]));
+            'admin' => 'ADMIN',
+            'super_admin' => 'SUPER_ADMIN',
+            'user' => 'USER',
+        ], UserRole::toSelectArray([UserRole::MODERATOR()]));
     }
 
     /**
@@ -73,10 +73,10 @@ class GetSelectArrayTest extends TestCase
     public function testGetLocalizedSelectArrayFromEnumWithBlacklist(): void
     {
         $this->assertEquals([
-            'test_1' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_1',
-            'test_2' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_2',
-            'test_4' => 'enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_4',
-        ], TestEnum::toLocalizedSelectArray([TestEnum::TEST3()]));
+            'moderator' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.moderator',
+            'admin' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.admin',
+            'user' => 'enums.Sourceboat\\Enumeration\\Tests\\UserRole.user',
+        ], UserRole::toLocalizedSelectArray([UserRole::SUPER_ADMIN()]));
     }
 
     /**

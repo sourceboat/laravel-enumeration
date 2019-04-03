@@ -19,8 +19,8 @@ class ModelHasEnumsTraitTest extends TestCase
      */
     public function testGetDefaultMemberWhenNotSet(): void
     {
-        $this->assertNotNull($this->model->test);
-        $this->assertEquals(TestEnum::defaultMember(), $this->model->test);
+        $this->assertNotNull($this->model->role);
+        $this->assertEquals(UserRole::defaultMember(), $this->model->role);
     }
 
     /**
@@ -39,7 +39,7 @@ class ModelHasEnumsTraitTest extends TestCase
     public function testSetterValidationWithWrongValue(): void
     {
         try {
-            $this->model->test = 'test';
+            $this->model->role = 'test';
             $this->assertTrue(false, 'undefined value was set.');
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(true);
@@ -53,9 +53,9 @@ class ModelHasEnumsTraitTest extends TestCase
     public function testSetterValidationWithCorrectSkalarValue(): void
     {
         try {
-            $this->model->test = 'test_2';
+            $this->model->role = 'admin';
             $this->assertTrue(true);
-            $this->assertEquals(TestEnum::TEST2(), $this->model->test);
+            $this->assertEquals(UserRole::ADMIN(), $this->model->role);
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(false, 'Correct value was rejected');
         }
@@ -86,9 +86,9 @@ class ModelHasEnumsTraitTest extends TestCase
     public function testSetterValidationWithCorrectMember(): void
     {
         try {
-            $this->model->test = TestEnum::TEST3();
+            $this->model->role = UserRole::SUPER_ADMIN();
             $this->assertTrue(true);
-            $this->assertEquals(TestEnum::TEST3(), $this->model->test);
+            $this->assertEquals(UserRole::SUPER_ADMIN(), $this->model->role);
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(false, 'Correct value was rejected');
         }

@@ -10,7 +10,7 @@ class TestModel extends Model
     use HasEnums;
 
     protected $enums = [
-        'test' => TestEnum::class,
+        'role' => UserRole::class,
         'test2' => [ 'nullable' => true, 'enum' => TestEnum2::class ],
     ];
 }

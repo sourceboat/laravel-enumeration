@@ -19,57 +19,57 @@ class HasEnumsTraitMethodsTest extends TestCase
     {
         $this->assertEquals([], $this->model2->getEnumsArray());
         $this->assertEquals([
-            'test' => TestEnum::class,
+            'role' => UserRole::class,
             'test2' => [ 'nullable' => true, 'enum' => TestEnum2::class ],
         ], $this->model->getEnumsArray());
     }
 
     public function testIsEnumAttribute(): void
     {
-        $this->assertTrue($this->model->isEnumAttribute('test'));
+        $this->assertTrue($this->model->isEnumAttribute('role'));
         $this->assertFalse($this->model->isEnumAttribute('test3'));
     }
 
     public function testGetAttribute(): void
     {
-        $this->assertEquals(TestEnum::defaultMember(), $this->model->getAttribute('test'));
+        $this->assertEquals(UserRole::defaultMember(), $this->model->getAttribute('role'));
 
-        $this->model->test = TestEnum::TEST3();
+        $this->model->role = UserRole::SUPER_ADMIN();
 
-        $this->assertEquals(TestEnum::TEST3(), $this->model->getAttribute('test'));
+        $this->assertEquals(UserRole::SUPER_ADMIN(), $this->model->getAttribute('role'));
 
         $this->assertNull($this->model->getAttribute('test2'));
-        $this->assertNull($this->model->getAttribute('test3'));
+        $this->assertNull($this->model->getAttribute('roles'));
     }
 
     public function testSetAttribute(): void
     {
         try {
-            $this->model->setAttribute('test', 'test');
+            $this->model->setAttribute('role', 'test');
             $this->assertTrue(false, 'undefined value "test" was set.');
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(true);
         }
 
         try {
-            $this->model->setAttribute('test', null);
+            $this->model->setAttribute('role', null);
             $this->assertTrue(false, 'undefined value "null" was set.');
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(true);
         }
 
         try {
-            $this->model->setAttribute('test', TestEnum::TEST2());
+            $this->model->setAttribute('role', UserRole::ADMIN());
             $this->assertTrue(true);
         } catch (UndefinedMemberException $e) {
-            $this->assertTrue(false, 'Correct value "TestEnum::TEST2()" was rejected');
+            $this->assertTrue(false, 'Correct value "UserRole::ADMIN()" was rejected');
         }
 
         try {
-            $this->model->setAttribute('test', 'test_1');
+            $this->model->setAttribute('role', 'moderator');
             $this->assertTrue(true);
         } catch (UndefinedMemberException $e) {
-            $this->assertTrue(false, 'Correct value "test_1" was rejected');
+            $this->assertTrue(false, 'Correct value "moderator" was rejected');
         }
 
         try {
