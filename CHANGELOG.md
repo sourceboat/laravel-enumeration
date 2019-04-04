@@ -2,6 +2,9 @@
 
 ## NEXT RELEASE
 
+
+## 1.1.0 - 2019-04-04 - minor release
+
 ### Fixed
 - the `lint:phpmd`-script no longer searches for a non existing directory
 - localization for the `EnumerationValue`-message
