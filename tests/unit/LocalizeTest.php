@@ -11,7 +11,10 @@ class LocalizeTest extends TestCase
      */
     public function testGetCorrectDefaultKey(): void
     {
-        $this->assertEquals('enums.Sourceboat\\Enumeration\\Tests\\TestEnum.test_1', TestEnum::TEST1()->localized());
+        $this->assertEquals(
+            'enums.Sourceboat\\Enumeration\\Tests\\UserRole.moderator',
+            UserRole::MODERATOR()->localized()
+        );
     }
 
     /**
@@ -21,6 +24,6 @@ class LocalizeTest extends TestCase
      */
     public function testGetCorrectOverrideKey(): void
     {
-        $this->assertEquals('test.test_1', TestEnum2::TEST1()->localized());
+        $this->assertEquals('test.berry', FruitType::BERRY()->localized());
     }
 }

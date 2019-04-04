@@ -13,8 +13,6 @@ class EnumerationServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootCommands();
-
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'laravel_enumeration');
     }
 
     /**

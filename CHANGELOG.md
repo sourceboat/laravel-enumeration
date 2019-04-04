@@ -1,5 +1,22 @@
 # Changelog
 
+## NEXT RELEASE
+
+
+## 1.1.0 - 2019-04-04 - minor release
+
+### Fixed
+- the `lint:phpmd`-script no longer searches for a non existing directory
+- localization for the `EnumerationValue`-message
+
+### Changed
+- `__toString` now returns the value and not the key of the member
+
+### Added
+- `defaultMember` method to `Enumeration`
+- `HasEnums` trait for laravel models
+
+
 ## 1.0.1 - 2019-03-07 - patch release
 
 ### Fixed

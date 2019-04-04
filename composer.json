@@ -50,11 +50,11 @@
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "lint:phpcs": "vendor/bin/phpcs -s",
-        "lint:phpmd": "vendor/bin/phpmd config,src,tests text phpmd.xml"
+        "lint:phpmd": "vendor/bin/phpmd src,tests text phpmd.xml"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.1-dev"
         },
         "laravel": {
             "providers": [

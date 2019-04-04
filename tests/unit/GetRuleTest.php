@@ -11,13 +11,13 @@ class GetRuleTest extends TestCase
      */
     public function testMakeRule(): void
     {
-        $rule = TestEnum::makeRule();
+        $rule = UserRole::makeRule();
 
-        $this->assertTrue($rule->passes(null, TestEnum::TEST1()->value()));
-        $this->assertTrue($rule->passes(null, TestEnum::TEST2()->value()));
-        $this->assertTrue($rule->passes(null, TestEnum::TEST3()->value()));
-        $this->assertTrue($rule->passes(null, TestEnum::TEST4()->value()));
-        $this->assertFalse($rule->passes(null, 'test'));
+        $this->assertTrue($rule->passes(null, UserRole::MODERATOR()->value()));
+        $this->assertTrue($rule->passes(null, UserRole::ADMIN()->value()));
+        $this->assertTrue($rule->passes(null, UserRole::SUPER_ADMIN()->value()));
+        $this->assertTrue($rule->passes(null, UserRole::USER()->value()));
+        $this->assertFalse($rule->passes(null, 'moderato'));
         $this->assertFalse($rule->passes(null, 5));
     }
 
@@ -28,13 +28,13 @@ class GetRuleTest extends TestCase
      */
     public function testMakeRuleWithWhitelist(): void
     {
-        $rule = TestEnum::makeRuleWithWhitelist([TestEnum::TEST1()]);
+        $rule = UserRole::makeRuleWithWhitelist([UserRole::MODERATOR()]);
 
-        $this->assertTrue($rule->passes(null, TestEnum::TEST1()->value()));
-        $this->assertFalse($rule->passes(null, TestEnum::TEST2()->value()));
-        $this->assertFalse($rule->passes(null, TestEnum::TEST3()->value()));
-        $this->assertFalse($rule->passes(null, TestEnum::TEST4()->value()));
-        $this->assertFalse($rule->passes(null, 'test'));
+        $this->assertTrue($rule->passes(null, UserRole::MODERATOR()->value()));
+        $this->assertFalse($rule->passes(null, UserRole::ADMIN()->value()));
+        $this->assertFalse($rule->passes(null, UserRole::SUPER_ADMIN()->value()));
+        $this->assertFalse($rule->passes(null, UserRole::USER()->value()));
+        $this->assertFalse($rule->passes(null, 'moderato'));
         $this->assertFalse($rule->passes(null, 5));
     }
 
@@ -45,13 +45,13 @@ class GetRuleTest extends TestCase
      */
     public function testMakeRuleWithBlacklist(): void
     {
-        $rule = TestEnum::makeRuleWithBlacklist([TestEnum::TEST1()]);
+        $rule = UserRole::makeRuleWithBlacklist([UserRole::MODERATOR()]);
 
-        $this->assertFalse($rule->passes(null, TestEnum::TEST1()->value()));
-        $this->assertTrue($rule->passes(null, TestEnum::TEST2()->value()));
-        $this->assertTrue($rule->passes(null, TestEnum::TEST3()->value()));
-        $this->assertTrue($rule->passes(null, TestEnum::TEST4()->value()));
-        $this->assertFalse($rule->passes(null, 'test'));
+        $this->assertFalse($rule->passes(null, UserRole::MODERATOR()->value()));
+        $this->assertTrue($rule->passes(null, UserRole::ADMIN()->value()));
+        $this->assertTrue($rule->passes(null, UserRole::SUPER_ADMIN()->value()));
+        $this->assertTrue($rule->passes(null, UserRole::USER()->value()));
+        $this->assertFalse($rule->passes(null, 'moderato'));
         $this->assertFalse($rule->passes(null, 5));
     }
 }
