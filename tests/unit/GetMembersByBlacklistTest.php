@@ -11,7 +11,7 @@ class GetMembersByBlacklistTest extends TestCase
      */
     public function testGetMembersByEmptyBlacklist(): void
     {
-        $this->assertEquals(TestEnum::members(), TestEnum::membersByBlacklist());
+        $this->assertEquals(UserRole::members(), UserRole::membersByBlacklist());
     }
 
     /**
@@ -22,9 +22,9 @@ class GetMembersByBlacklistTest extends TestCase
     public function testGetMembersByBlacklist(): void
     {
         $this->assertEquals([
-            TestEnum::TEST1()->key() => TestEnum::TEST1(),
-            TestEnum::TEST2()->key() => TestEnum::TEST2(),
-            TestEnum::TEST3()->key() => TestEnum::TEST3(),
-        ], TestEnum::membersByBlacklist([TestEnum::TEST4()]));
+            UserRole::MODERATOR()->key() => UserRole::MODERATOR(),
+            UserRole::ADMIN()->key() => UserRole::ADMIN(),
+            UserRole::SUPER_ADMIN()->key() => UserRole::SUPER_ADMIN(),
+        ], UserRole::membersByBlacklist([UserRole::USER()]));
     }
 }

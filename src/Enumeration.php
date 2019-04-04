@@ -152,4 +152,26 @@ abstract class Enumeration extends AbstractEnumeration
     {
         return self::makeRuleWithWhitelist(self::membersByBlacklist($blacklist));
     }
+
+    /**
+     * Get the default enum member.
+     * Override for your own value / logic.
+     *
+     * @return static
+     */
+    public static function defaultMember()
+    {
+        return collect(static::members())->first();
+    }
+
+    /**
+     * Returns a string representation of this member.
+     *
+     * @return string The string representation.
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
+     */
+    public function __toString()
+    {
+        return (string) $this->value();
+    }
 }

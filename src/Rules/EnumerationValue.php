@@ -4,6 +4,7 @@ namespace Sourceboat\Enumeration\Rules;
 
 use Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Str;
 
 class EnumerationValue implements Rule
 {
@@ -66,7 +67,11 @@ class EnumerationValue implements Rule
      */
     public function message(): string
     {
-        return __('laravel_enumeration::validation.enum_value');
+        $key = 'validation.enum_value';
+
+        return Str::is($key, __($key))
+            ? 'The given value is not suitable for :attribute.'
+            : __($key);
     }
 
     /**

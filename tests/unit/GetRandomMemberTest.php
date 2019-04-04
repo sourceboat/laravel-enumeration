@@ -11,7 +11,7 @@ class GetRandomMemberTest extends TestCase
      */
     public function testGetRandomMember(): void
     {
-        $this->assertTrue(TestEnum::randomMember()->anyOfArray(TestEnum::members()));
+        $this->assertTrue(UserRole::randomMember()->anyOfArray(UserRole::members()));
     }
 
     /**
@@ -22,8 +22,8 @@ class GetRandomMemberTest extends TestCase
     public function testGetRandomMemberWithBlacklist(): void
     {
         $this->assertEquals(
-            TestEnum::randomMember(TestEnum::membersByBlacklist([TestEnum::TEST3()])),
-            TestEnum::TEST3()
+            UserRole::randomMember(UserRole::membersByBlacklist([UserRole::SUPER_ADMIN()])),
+            UserRole::SUPER_ADMIN()
         );
     }
 }

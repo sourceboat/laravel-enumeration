@@ -11,7 +11,7 @@ class GetKeysTest extends TestCase
      */
     public function testGetSingleKey(): void
     {
-        $this->assertEquals('TEST1', TestEnum::TEST1()->key());
+        $this->assertEquals('MODERATOR', UserRole::MODERATOR()->key());
     }
 
     /**
@@ -23,10 +23,10 @@ class GetKeysTest extends TestCase
     public function testGetKeysFromEnum(): void
     {
         $this->assertEquals([
-            'TEST1',
-            'TEST2',
-            'TEST3',
-            'TEST4',
-        ], TestEnum2::keys());
+            'BERRY',
+            'NUT',
+            'ACCESSORY_FRUIT',
+            'LEGUME',
+        ], FruitType::keys());
     }
 }
