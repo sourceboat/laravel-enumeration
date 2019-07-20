@@ -168,9 +168,8 @@ abstract class Enumeration extends AbstractEnumeration
      * Returns a string representation of this member.
      *
      * @return string The string representation.
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->value();
     }
