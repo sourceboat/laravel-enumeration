@@ -33,7 +33,7 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 ## Requirements
 
 * eloquent/enumeration 6.0 or newer
-* Laravel 5.4 or newer; Tested with 5.7
+* Laravel 5.7
 * PHP 7.1 or newer
 
 ## Install
@@ -125,6 +125,15 @@ Returns the localized version of the value, default path is `enums.<EnumClass>.<
 
 ``` php
 UserType::SuperAdministrator()->localized(); // Returns for example 'Super Administrator', but `enums.App\Enums\UserType.3` when not set.
+```
+
+### is(static): bool
+
+Check if the instance is equal to the given member.
+
+``` php
+UserType::SuperAdministrator()->is(UserType::Moderator()); // -> false
+UserType::SuperAdministrator()->is(UserType::SuperAdministrator()); // -> true
 ```
 
 ### static randomMember(): static

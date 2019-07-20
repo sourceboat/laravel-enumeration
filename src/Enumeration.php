@@ -40,6 +40,17 @@ abstract class Enumeration extends AbstractEnumeration
     }
 
     /**
+     * Check if this instance equals to a specific member of the enum.
+     *
+     * @param static $value The member to check for
+     * @return bool
+     */
+    public function is($value): bool
+    {
+        return $this === $value;
+    }
+
+    /**
      * Get all values in this enumeration.
      *
      * @return array
