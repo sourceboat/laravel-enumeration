@@ -5,10 +5,14 @@ namespace Sourceboat\Enumeration\Tests;
 use Sourceboat\Enumeration\Enumeration;
 
 /**
- * @method static \Sourceboat\Enumeration\Tests\UserRole MODERATOR()
- * @method static \Sourceboat\Enumeration\Tests\UserRole ADMIN()
- * @method static \Sourceboat\Enumeration\Tests\UserRole SUPER_ADMIN()
- * @method static \Sourceboat\Enumeration\Tests\UserRole USER()
+ * @method static self MODERATOR()
+ * @method static self ADMIN()
+ * @method static self SUPER_ADMIN()
+ * @method static self USER()
+ * @method bool isModerator()
+ * @method bool isAdmin()
+ * @method bool isSuper_Admin()
+ * @method bool isUser()
  */
 class UserRole extends Enumeration
 {

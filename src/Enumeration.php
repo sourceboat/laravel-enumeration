@@ -3,6 +3,7 @@
 namespace Sourceboat\Enumeration;
 
 use Eloquent\Enumeration\AbstractEnumeration;
+use Illuminate\Support\Str;
 use Sourceboat\Enumeration\Rules\EnumerationValue;
 
 /**
@@ -183,5 +184,21 @@ abstract class Enumeration extends AbstractEnumeration
     public function __toString(): string
     {
         return (string) $this->value();
+    }
+
+    /**
+     * Implements `is<EnumKey>` methods for the enum.
+     *
+     * @param string $method
+     * @param array $arguments
+     * @return mixed
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     */
+    public function __call($method, $arguments)
+    {
+        if (Str::startsWith($method, 'is')) {
+            $key = Str::after($method, 'is');
+            return $this->is(static::memberByKey($key, false));
+        }
     }
 }

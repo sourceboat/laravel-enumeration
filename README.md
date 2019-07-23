@@ -136,6 +136,16 @@ UserType::SuperAdministrator()->is(UserType::Moderator()); // -> false
 UserType::SuperAdministrator()->is(UserType::SuperAdministrator()); // -> true
 ```
 
+### is<Enum_Value>(): bool
+
+Check if the instance is equal to the member indicated by the method name.
+
+``` php
+UserType::SuperAdministrator()->isModerator(); // -> false
+UserType::SuperAdministrator()->isSuperAdministrator(); // -> true
+UserType::SuperAdministrator()->isStudent(); // -> throws Eloquent\Enumeration\Exception\UndefinedMemberException
+```
+
 ### static randomMember(): static
 
 Returns a random member from the enum. Useful for factories.
