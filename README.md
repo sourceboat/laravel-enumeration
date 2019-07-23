@@ -33,7 +33,7 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 ## Requirements
 
 * eloquent/enumeration 6.0 or newer
-* Laravel 5.4 or newer; Tested with 5.7
+* Laravel 5.7 or newer;
 * PHP 7.1 or newer
 
 ## Install
