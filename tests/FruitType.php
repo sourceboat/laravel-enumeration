@@ -5,10 +5,14 @@ namespace Sourceboat\Enumeration\Tests;
 use Sourceboat\Enumeration\Enumeration;
 
 /**
- * @method static \Sourceboat\Enumeration\Tests\FruitType BERRY()
- * @method static \Sourceboat\Enumeration\Tests\FruitType NUT()
- * @method static \Sourceboat\Enumeration\Tests\FruitType ACCESSORY_FRUIT()
- * @method static \Sourceboat\Enumeration\Tests\FruitType LEGUME()
+ * @method static self BERRY()
+ * @method static self NUT()
+ * @method static self ACCESSORY_FRUIT()
+ * @method static self LEGUME()
+ * @method bool isBerry()
+ * @method bool isNut()
+ * @method bool isAccessory_Fruit()
+ * @method bool isLegume()
  */
 class FruitType extends Enumeration
 {

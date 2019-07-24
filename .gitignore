@@ -1,26 +1,9 @@
-Skip to content
-
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @NeroAzure Sign out
-4
-5 0 sourceboat/laravel-static-permission
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-laravel-static-permission/.gitignore
- Philipp Kübler init commit
-091bbe7  on 28 Nov 2018
-608 lines (473 sloc)  10.7 KB
-
-
 # Created by https://www.gitignore.io/api/osx,linux,windows,eclipse,composer,phpstorm,sublimetext,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=osx,linux,windows,eclipse,composer,phpstorm,sublimetext,visualstudio,visualstudiocode
 
 ### Composer ###
 composer.phar
+composer.lock
 /vendor/
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control

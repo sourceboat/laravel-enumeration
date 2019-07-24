@@ -5,9 +5,12 @@ namespace DummyNamespace;
 use Sourceboat\Enumeration\Enumeration;
 
 /**
- * @method static \DummyNamespace\DummyClass OptionOne()
- * @method static \DummyNamespace\DummyClass OptionTwo()
- * @method static \DummyNamespace\DummyClass OptionThree()
+ * @method static self OptionOne()
+ * @method static self OptionTwo()
+ * @method static self OptionThree()
+ * @method bool isOptionOne()
+ * @method bool isOptionTwo()
+ * @method bool isOptionThree()
  */
 final class DummyClass extends Enumeration
 {

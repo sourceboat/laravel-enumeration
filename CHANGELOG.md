@@ -3,6 +3,17 @@
 ## NEXT RELEASE
 
 
+## 1.2.0 - 2019-07-24 - minor release
+
+### Changed
+- `__toString` has proper return type hint
+- Dependencies now properly allow laravel 5.7+
+
+### Added
+- `is(EnumValue)` method to `Enumeration` (#2)
+- `is<EnumValue>()` methods to `Enumeration` via `__call` (#2)
+
+
 ## 1.1.0 - 2019-04-04 - minor release
 
 ### Fixed
