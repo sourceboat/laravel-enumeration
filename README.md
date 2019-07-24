@@ -20,7 +20,7 @@ Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](
 
 ## Table of Contents
 
-* [Guide](#guide)
+* [Requirements](#requirements)
 * [Install](#install)
 * [Generating enums](#generating-enums)
 * [Usage](#usage)
