@@ -50,7 +50,8 @@
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "lint:phpcs": "vendor/bin/phpcs -s",
-        "lint:phpmd": "vendor/bin/phpmd src,tests text phpmd.xml"
+        "lint:phpmd": "vendor/bin/phpmd src,tests text phpmd.xml",
+        "fix": "vendor/bin/phpcbf"
     },
     "extra": {
         "branch-alias": {
