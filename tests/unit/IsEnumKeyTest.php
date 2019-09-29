@@ -2,6 +2,8 @@
 
 namespace Sourceboat\Enumeration\Tests;
 
+use Eloquent\Enumeration\Exception\UndefinedMemberException;
+
 class IsEnumKeyTest extends TestCase
 {
     /**
@@ -37,11 +39,11 @@ class IsEnumKeyTest extends TestCase
     /**
      * Test functionality of is<EnumKey> helper.
      *
-     * @expectedException \Eloquent\Enumeration\Exception\UndefinedMemberException
      * @return void
      */
     public function testIsEnumKeyException(): void
     {
+        $this->expectException(UndefinedMemberException::class);
         UserRole::USER()->isStudent();
     }
 }
