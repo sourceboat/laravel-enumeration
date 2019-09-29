@@ -1,6 +1,6 @@
 <?php
 
-namespace Sourceboat\Enumeration\Interfaces;
+namespace Sourceboat\Enumeration\Enums\Interfaces;
 
 /**
  * Defines the interface for weighted enums.
@@ -10,7 +10,7 @@ interface Weighted
     /**
      * Get members of this enum greater than $weighted.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $weighted
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return array
      */
     public static function getMembersGreaterThan(Weighted $weighted): array;
@@ -18,7 +18,7 @@ interface Weighted
     /**
      * Get members of this enum greater than or equal to $weighted.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $weighted
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return array
      */
     public static function getMembersGreaterThanOrEqualTo(Weighted $weighted): array;
@@ -26,7 +26,7 @@ interface Weighted
     /**
      * Get members of this enum equal to $weighted.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $weighted
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return array
      */
     public static function getMembersEqualTo(Weighted $weighted): array;
@@ -34,7 +34,7 @@ interface Weighted
     /**
      * Get members of this enum less than or equal to $weighted.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $weighted
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return array
      */
     public static function getMembersLessThanOrEqualTo(Weighted $weighted): array;
@@ -42,7 +42,7 @@ interface Weighted
     /**
      * Get members of this enum less than or equal to $weighted.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $weighted
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return array
      */
     public static function getMembersLessThan(Weighted $weighted): array;
@@ -92,7 +92,7 @@ interface Weighted
     /**
      * Determine if this members weight is greater than the given members weight.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $member
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $member
      * @return bool
      */
     public function isGreaterThan(Weighted $member): bool;
@@ -100,7 +100,7 @@ interface Weighted
     /**
      * Determine if this members weight is greater or equal than the given members weight.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $member
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $member
      * @return bool
      */
     public function isGreaterThanOrEqualTo(Weighted $member): bool;
@@ -108,7 +108,7 @@ interface Weighted
     /**
      * Determine if this members weight is equal to the given members weight.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $member
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $member
      * @return bool
      */
     public function isEqualTo(Weighted $member): bool;
@@ -116,7 +116,7 @@ interface Weighted
     /**
      * Determine if this members weight is less than the given members weight.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $member
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $member
      * @return bool
      */
     public function isLessThan(Weighted $member): bool;
@@ -124,7 +124,7 @@ interface Weighted
     /**
      * Determine if this members weight is less than or euqal to the given members weight.
      *
-     * @param \Sourceboat\Enumeration\Interfaces\Weighted $member
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $member
      * @return bool
      */
     public function isLessThanOrEqualTo(Weighted $member): bool;
