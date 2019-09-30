@@ -139,31 +139,32 @@ trait IsWeighted
     /**
      * Get the weight of this member.
      *
+     * @var \Sourceboat\Enumeration\Enums\Interfaces\Weighted $this
      * @return int|float
      */
     public function weight()
     {
-        return config(sprintf('%s.%s', static::getWeightOptionsKey(), $this->value));
+        return config(sprintf('%s.%s', static::getWeightOptionsKey(), $this->value()));
     }
 
     /**
-     * Determine if this members weight is greater as the given members weight.
+     * Determine if this members weight is greater than the given members weight.
      *
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return bool
      */
-    public function isGreaterAs(Weighted $weighted): bool
+    public function isGreaterThan(Weighted $weighted): bool
     {
         return $this->weight() > $weighted->weight();
     }
 
     /**
-     * Determine if this members weight is greater or equal as the given members weight.
+     * Determine if this members weight is greater or equal than the given members weight.
      *
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
      * @return bool
      */
-    public function isGreaterAsOrEqualTo(Weighted $weighted): bool
+    public function isGreaterThanOrEqualTo(Weighted $weighted): bool
     {
         return $this->weight() >= $weighted->weight();
     }
@@ -198,6 +199,6 @@ trait IsWeighted
      */
     public function isLessThanOrEqualTo(Weighted $weighted): bool
     {
-        return $this->weight() < $weighted->weight();
+        return $this->weight() <= $weighted->weight();
     }
 }
