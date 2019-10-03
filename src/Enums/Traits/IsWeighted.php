@@ -48,6 +48,34 @@ trait IsWeighted
     }
 
     /**
+     * Get members of this enum between the given members weights.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public static function getMembersBetween(Weighted $lower, Weighted $higher): array
+    {
+        return static::membersByPredicate(static function (Weighted $member) use ($lower, $higher): bool {
+            return $member->isBetween($lower, $higher);
+        });
+    }
+
+    /**
+     * Get members of this enum between or equal to the given members weights.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public static function getMembersBetweenOrEqualTo(Weighted $lower, Weighted $higher): array
+    {
+        return static::membersByPredicate(static function (Weighted $member) use ($lower, $higher): bool {
+            return $member->isBetweenOrEqualTo($lower, $higher);
+        });
+    }
+
+    /**
      * Get members of this enum equal to $weighted.
      *
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $weighted
@@ -136,6 +164,30 @@ trait IsWeighted
         return static::getMembersLessThan($this);
     }
 
+
+    /**
+     * Get members of this enum between this and the given higher bound.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public function getMembersBetweenThisAnd(Weighted $higher): array
+    {
+        return static::getMembersBetween($this, $higher);
+    }
+
+    /**
+     * Get members of this enum between or equal to this and the given higher bound.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public function getMembersBetweenOrEqualToThisAnd(Weighted $higher): array
+    {
+        return static::getMembersBetweenOrEqualTo($this, $higher);
+    }
+
+
     /**
      * Get the weight of this member.
      *
@@ -200,5 +252,31 @@ trait IsWeighted
     public function isLessThanOrEqualTo(Weighted $weighted): bool
     {
         return $this->weight() <= $weighted->weight();
+    }
+
+    /**
+     * Determine if this members weight is between the given members weight.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return bool
+     */
+    public function isBetween(Weighted $lower, Weighted $higher): bool
+    {
+        return $this->weight() > $lower->weight()
+            && $this->weight() < $higher->weight();
+    }
+
+    /**
+     * Determine if this members weight is between or equal to the given members weight.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return bool
+     */
+    public function isBetweenOrEqualTo(Weighted $lower, Weighted $higher): bool
+    {
+        return $this->weight() >= $lower->weight()
+            && $this->weight() <= $higher->weight();
     }
 }

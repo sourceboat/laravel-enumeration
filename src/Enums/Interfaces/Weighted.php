@@ -50,6 +50,24 @@ interface Weighted extends EnumerationInterface
     public static function getMembersLessThan(Weighted $weighted): array;
 
     /**
+     * Get members of this enum between the given members weights.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public static function getMembersBetween(Weighted $lower, Weighted $higher): array;
+
+    /**
+     * Get members of this enum between or equal to the given members weights.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public static function getMembersBetweenOrEqualTo(Weighted $lower, Weighted $higher): array;
+
+    /**
      * Get members of this enum greater than this.
      *
      * @return array
@@ -83,6 +101,22 @@ interface Weighted extends EnumerationInterface
      * @return array
      */
     public function getMembersLessThanThis(): array;
+
+    /**
+     * Get members of this enum between this and the given higher bound.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public function getMembersBetweenThisAnd(Weighted $higher): array;
+
+    /**
+     * Get members of this enum between or equal to this and the given higher bound.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return array
+     */
+    public function getMembersBetweenOrEqualToThisAnd(Weighted $higher): array;
 
     /**
      * The weight of this enum member.
@@ -130,4 +164,22 @@ interface Weighted extends EnumerationInterface
      * @return bool
      */
     public function isLessThanOrEqualTo(Weighted $member): bool;
+
+    /**
+     * Determine if this members weight is between the given members weight.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return bool
+     */
+    public function isBetween(Weighted $lower, Weighted $higher): bool;
+
+    /**
+     * Determine if this members weight is between or equal to the given members weight.
+     *
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
+     * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
+     * @return bool
+     */
+    public function isBetweenOrEqualTo(Weighted $lower, Weighted $higher): bool;
 }
