@@ -1,6 +1,6 @@
 <?php
 
-namespace Sourceboat\Enumeration\Traits;
+namespace Sourceboat\Enumeration\Models\Traits;
 
 use Eloquent\Enumeration\Exception\UndefinedMemberException;
 

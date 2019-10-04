@@ -3,6 +3,8 @@
 namespace Sourceboat\Enumeration\Tests;
 
 use Sourceboat\Enumeration\Enumeration;
+use Sourceboat\Enumeration\Enums\Interfaces\Weighted;
+use Sourceboat\Enumeration\Enums\Traits\IsWeighted;
 
 /**
  * @method static self BERRY()
@@ -14,8 +16,10 @@ use Sourceboat\Enumeration\Enumeration;
  * @method bool isAccessory_Fruit()
  * @method bool isLegume()
  */
-class FruitType extends Enumeration
+class FruitType extends Enumeration implements Weighted
 {
+    use IsWeighted;
+
     protected static $localizationPath = 'test';
 
     public const BERRY = 'berry';
