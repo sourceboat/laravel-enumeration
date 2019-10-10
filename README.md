@@ -6,11 +6,10 @@
 [![Packagist downloads](https://img.shields.io/packagist/dt/sourceboat/laravel-enumeration.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-enumeration)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
-Strongly typed enum implementation for Laravel. Based on [eloquent/enumeration](https://github.com/eloquent/enumeration) and inspired by [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum)
+Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.com/eloquent/enumeration) and inspired by [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum)
 
 ## Features
 
-* Strongly typed
 * Key/value-definition via class constants
 * Full featured suite of methods
 * Enum artisan generator
