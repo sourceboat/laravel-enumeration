@@ -15,7 +15,7 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 * Enum artisan generator
 * Validation rules for passing enum values as input parameters
 * Localization support
-* Extendible
+* Extensible
 
 ## Table of Contents
 
@@ -40,10 +40,12 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 Via Composer
 
 ``` bash
+
 $ composer require sourceboat/laravel-enumeration
 ```
 
 If you're using Laravel < 5.5 you'll need to add the service provider to `config/app.php`
+
 ``` php
 'Sourceboat\Enumeration\EnumerationServiceProvider'
 ```
@@ -57,6 +59,7 @@ php artisan make:enum UserType
 ## Usage
 
 Given the following enum:
+
 ``` php
 <?php
 
@@ -80,6 +83,7 @@ final class UserType extends Enumeration
 ```
 
 Values can now be accessed like so:
+
 ``` php
 UserType::Moderator() // Returns an instance of UserType with UserType::Moderator()->value === 1
 ```
@@ -189,6 +193,7 @@ UserType::toLocalizedSelectArray(); // Returns [0 => 'Administrator', 1 => 'Mode
 ## Validation
 
 ### Array Validation
+
 You may validate that a value passed to a controller is a valid value for a given enum by using the `EnumerationValue` rule, for easier handling there are helper methods for creating the rule: `Enumeration::makeRule()`, `Enumeration::makeRuleWithWhitelist($whitelist)` and `Enumeration::makeRuleWithBlacklist($blacklist)`.
 
 ``` php
