@@ -334,8 +334,3 @@ Much of the functionality in this Package is inspired by [bensampo/laravel-enum]
 - [laravel/framework](https://github.com/laravel/framework) is licensed under MIT
 
 This package is also licensed under the MIT license.
-
-## TODOs
-
-* [x]  Tests for all enumeration-functions and the rule.
-* [x]  Model-Trait to enable casting of enumerations and "on the fly"-validation for enumeration values on models.
