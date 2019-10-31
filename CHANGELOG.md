@@ -1,6 +1,15 @@
 # Changelog
 
-## NEXT RELEASE
+## Next release
+
+
+## 1.3.0 - 2019-08-31 - minor release
+
+### Added
+- weighted enums
+
+### Changed
+- various fixes regarding the readme
 
 
 ## 1.2.0 - 2019-07-24 - minor release
