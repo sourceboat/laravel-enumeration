@@ -15,6 +15,7 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 * Enum artisan generator
 * Validation rules for passing enum values as input parameters
 * Localization support
+* Support to give enum Members a weight
 * Extensible
 
 ## Table of Contents
@@ -27,6 +28,7 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 * [Validation](#validation)
 * [Localization](#localization)
 * [Model Trait](#model-trait)
+* [Weighted Enums](#weighted-enums)
 * [License information](#license-information)
 
 ## Requirements
@@ -324,6 +326,78 @@ $type = $user->type
 echo $type === UserType::defaultMember(); // "true"
 echo $type->value; // "0"
 ```
+
+## Weighted Enums
+
+It is Possible to define weights for enum members. the standard way is to define the weights a config file and them implement the `Weighted`-interface with the `IsWeighted`-trait and define the path to your config. The weigths can be defined as integer or float values.
+
+``` php
+// The Enum
+<?php
+
+namespace App\Enums;
+
+use Sourceboat\Enumeration\Enumeration;
+use Sourceboat\Enumeration\Enums\Interfaces\Weighted;
+use Sourceboat\Enumeration\Enums\Traits\IsWeighted;
+
+/**
+ * @method static \App\Enums\UserType Administrator() // These are only for autocompletion etc.
+ * @method static \App\Enums\UserType Moderator()
+ * @method static \App\Enums\UserType Subscriber()
+ * @method static \App\Enums\UserType SuperAdministrator()
+ */
+final class UserType extends Enumeration implements Weighted
+{
+    use IsWeighted;
+
+    const Administrator = 0;
+    const Moderator = 1;
+    const Subscriber = 2;
+    const SuperAdministrator = 3;
+
+    protected static $weightOptionsKey = 'test'; // optional, by standard its `sprintf('enums.%s.weights', static::class)`
+}
+```
+
+For further customization the `Weighted::weight(): int|float`-method can be overridden to use your own way of defining the weights.
+
+The following methods for comparing weighted enum members are available:
+
+* `Weighted::isGreaterThan(Weighted): bool`
+* `Weighted::isGreaterThanOrEuqalTo(Weighted): bool`
+* `Weighted::isEuqalTo(Weighted): bool`
+* `Weighted::isLessThanOrEqualTo(Weighted): bool`
+* `Weighted::isLessThan(Weighted): bool`
+
+The following methods for filtering the enum are available:
+
+* `Weighted::getMembersGreaterThanThis(): array<Weighted>`
+* `Weighted::getMembersGreaterThanOrEqualToThis(): array<Weighted>`
+* `Weighted::getMembersEqualToThis(): array<Weighted>`
+* `Weighted::getMembersLessThanOrEqualToThis(): array<Weighted>`
+* `Weighted::getMembersLessThanThis(): array<Weighted>`
+* `static Weighted::getMembersGreaterThan(Weighted): array<Weighted>`
+* `static Weighted::getMembersGreaterThanOrEqualTo(Weighted): array<Weighted>`
+* `static Weighted::getMembersEqualTo(Weighted): array<Weighted>`
+* `static Weighted::getMembersLessThanOrEqualTo(Weighted): array<Weighted>`
+* `static Weighted::getMembersLessThan(Weighted): array<Weighted>`
+* `static Weighted::getMembersBetween(Weighted $lowerMember, Weighted $higherMember): array<Weighted>`
+* `static Weighted::getMembersBetweenOrEqualTo(Weighted $lowerMember, Weighted $higherMember): array<Weighted>`
+
+### Model-trait `HasWeightedEnumScopes`
+
+With the model trait `HasWeightedEnumsScopes` you can easily search for models with enum values greater than one or between two other enum value, even with string values.
+
+Available scopes:
+
+* `whereGreaterThanEnum(string $attribute, Weighted $member)`
+* `whereGreaterThanOrEqualToEnum(string $attribute, Weighted $member)`
+* `whereEqualToEnum(string $attribute, Weighted $member)`
+* `whereLessThanOrEqualToEnum(string $attribute, Weighted $member)`
+* `whereLessThanEnum(string $attribute, Weighted $member)`
+* `whereBetweenEnum(string $attribute, Weighted $lowerMember, Weighted $higherMember)`
+* `whereBetweenOrEqualEnum(string $attribute, Weighted $lowerMember, Weighted $higherMember)`
 
 ## License information
 
