@@ -26,7 +26,8 @@
     "require": {
         "php": ">=7.3",
         "eloquent/enumeration": "^6.0",
-        "laravel/framework": "^6.0 || ^7.0"
+        "illuminate/console": ">=6.0",
+        "illuminate/support": ">=6.0"
     },
     "require-dev": {
         "consistence/coding-standard": "3.10",
