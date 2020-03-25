@@ -13,7 +13,7 @@ trait HasEnums
     /**
      * Get the attribute-enum-mapping from this model.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getEnumsArray(): array
     {
@@ -36,7 +36,7 @@ trait HasEnums
      *
      * @param string $key
      * @return mixed
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function getAttribute($key)
     {
@@ -69,7 +69,7 @@ trait HasEnums
      * @param string $key
      * @param mixed $value
      * @return $this
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function setAttribute($key, $value)
     {

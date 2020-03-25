@@ -28,7 +28,7 @@ class GetMembersBetweenOrEqualToTest extends TestCase
     /**
      * Data provider for the test `testGetMembersBetweenOrEqualTo`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {
@@ -74,7 +74,7 @@ class GetMembersBetweenOrEqualToTest extends TestCase
      * @dataProvider dataProvider
      * @param \Sourceboat\Enumeration\Tests\FruitType $lower
      * @param \Sourceboat\Enumeration\Tests\FruitType $higher
-     * @param array $result
+     * @param array<mixed> $result
      * @return void
      */
     public function testGetMembersBetweenOrEqualTo(FruitType $lower, FruitType $higher, array $result): void

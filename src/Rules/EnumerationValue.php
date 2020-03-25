@@ -27,13 +27,13 @@ class EnumerationValue implements Rule
      *
      * @var bool
      */
-    private $casesensitive = false;
+    private $caseSensitive = false;
 
     /**
      * Create a new rule instance.
      *
      * @param string $enum The class of the enum to check.
-     * @param array|null $values A value-whitelist.
+     * @param array<mixed>|null $values A value-whitelist.
      */
     public function __construct(string $enum, ?array $values = null)
     {
@@ -47,13 +47,13 @@ class EnumerationValue implements Rule
      * @param string $attribute
      * @param mixed  $value
      * @return bool
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function passes($attribute, $value): bool
     {
         try {
-            return $this->enumClass::memberByValue($value, $this->casesensitive)
+            return $this->enumClass::memberByValue($value, $this->caseSensitive)
                 ->anyOfArray($this->values ?? $this->enumClass::members());
         } catch (UndefinedMemberExceptionInterface $e) {
             return false;
@@ -84,6 +84,6 @@ class EnumerationValue implements Rule
      */
     public function setCaseSensitivity(bool $caseSensitive): void
     {
-        $this->casesensitive = $caseSensitive;
+        $this->caseSensitive = $caseSensitive;
     }
 }

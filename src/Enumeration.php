@@ -54,7 +54,7 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get all values in this enumeration.
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function values(): array
     {
@@ -64,7 +64,7 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get all values in this enumeration.
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function localizedValues(): array
     {
@@ -74,7 +74,7 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get all keys in this enumeration.
      *
-     * @return array
+     * @return array<string>
      */
     public static function keys(): array
     {
@@ -84,8 +84,8 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get the values of this enum as options for a select.
      *
-     * @param array|null $blacklist
-     * @return array options
+     * @param array<mixed>|null $blacklist
+     * @return array<mixed> options
      */
     public static function toLocalizedSelectArray(?array $blacklist = []): array
     {
@@ -98,8 +98,8 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get the values of this enum as options for a select.
      *
-     * @param array|null $blacklist
-     * @return array options
+     * @param array<mixed>|null $blacklist
+     * @return array<mixed> options
      */
     public static function toSelectArray(?array $blacklist = []): array
     {
@@ -112,8 +112,8 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get the members of this enum filtered by $blacklist.
      *
-     * @param array|null $blacklist
-     * @return array members
+     * @param array<mixed>|null $blacklist
+     * @return array<static> members
      */
     public static function membersByBlacklist(?array $blacklist = []): array
     {
@@ -125,7 +125,7 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get a random member of this enum.
      *
-     * @param array|null $blacklist
+     * @param array<mixed>|null $blacklist
      * @return static
      */
     public static function randomMember(?array $blacklist = [])
@@ -146,7 +146,7 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get a laravel validation rule for this enum as whitelist.
      *
-     * @param array|null $whitelist the values allowed for this rule, all when left blank.
+     * @param array<mixed>|null $whitelist the values allowed for this rule, all when left blank.
      * @return \Sourceboat\Enumeration\Rules\EnumerationValue
      */
     public static function makeRuleWithWhitelist(?array $whitelist = null): EnumerationValue
@@ -157,7 +157,7 @@ abstract class Enumeration extends AbstractEnumeration
     /**
      * Get a laravel validation rule for this enum as blacklist.
      *
-     * @param array|null $blacklist the values allowed for this rule, all when left blank.
+     * @param array<mixed>|null $blacklist the values allowed for this rule, all when left blank.
      * @return \Sourceboat\Enumeration\Rules\EnumerationValue
      */
     public static function makeRuleWithBlacklist(?array $blacklist = []): EnumerationValue
@@ -177,6 +177,28 @@ abstract class Enumeration extends AbstractEnumeration
     }
 
     /**
+     * Checks if this enum has a member with the given value.
+     *
+     * @param mixed $value
+     * @return bool
+     */
+    public static function hasValue($value): bool
+    {
+        return in_array($value, static::values());
+    }
+
+    /**
+     * Checks if this enum has a member with the given key.
+     *
+     * @param string $key
+     * @return bool
+     */
+    public static function hasKey(string $key): bool
+    {
+        return in_array($key, static::keys());
+    }
+
+    /**
      * Returns a string representation of this member.
      *
      * @return string The string representation.
@@ -190,14 +212,15 @@ abstract class Enumeration extends AbstractEnumeration
      * Implements `is<EnumKey>` methods for the enum.
      *
      * @param string $method
-     * @param array $arguments
+     * @param array<mixed> $arguments
      * @return mixed
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function __call($method, $arguments)
     {
         if (Str::startsWith($method, 'is')) {
             $key = Str::after($method, 'is');
+
             return $this->is(static::memberByKey($key, false));
         }
     }

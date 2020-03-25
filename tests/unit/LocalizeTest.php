@@ -13,7 +13,7 @@ class LocalizeTest extends TestCase
     {
         $this->assertEquals(
             'enums.Sourceboat\\Enumeration\\Tests\\UserRole.moderator',
-            UserRole::MODERATOR()->localized()
+            UserRole::MODERATOR()->localized(),
         );
     }
 

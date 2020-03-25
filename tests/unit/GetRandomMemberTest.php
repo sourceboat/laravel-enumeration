@@ -23,7 +23,7 @@ class GetRandomMemberTest extends TestCase
     {
         $this->assertEquals(
             UserRole::randomMember(UserRole::membersByBlacklist([UserRole::SUPER_ADMIN()])),
-            UserRole::SUPER_ADMIN()
+            UserRole::SUPER_ADMIN(),
         );
     }
 }

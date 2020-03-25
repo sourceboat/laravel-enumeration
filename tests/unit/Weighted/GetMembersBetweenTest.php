@@ -28,7 +28,7 @@ class GetMembersBetweenTest extends TestCase
     /**
      * Data provider for the test `testGetMembersBetween`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {
@@ -65,7 +65,7 @@ class GetMembersBetweenTest extends TestCase
      * @dataProvider dataProvider
      * @param \Sourceboat\Enumeration\Tests\FruitType $lower
      * @param \Sourceboat\Enumeration\Tests\FruitType $higher
-     * @param array $result
+     * @param array<mixed> $result
      * @return void
      */
     public function testGetMembersBetween(FruitType $lower, FruitType $higher, array $result): void

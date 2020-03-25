@@ -27,7 +27,7 @@ class IsBetweenOrEqualToTest extends TestCase
     /**
      * Data provider for the test `testIsBetweenOrEqualTo`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {
