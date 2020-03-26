@@ -30,7 +30,7 @@ class Enum implements CastsAttributes
      */
     public function get($model, string $key, $value, array $attributes)
     {
-        if ($this->enumClass::hasMemberWithValueOf($value)) {
+        if ($this->enumClass::hasValue($value)) {
             return $this->enumClass::memberByValue($value);
         }
 
@@ -54,7 +54,7 @@ class Enum implements CastsAttributes
      */
     public function set($model, string $key, $value, array $attributes): array
     {
-        if ($this->enumClass::hasMemberWithValueOf($value)
+        if ($this->enumClass::hasValue($value)
             || ($this->nullable && is_null($value))) {
             return [
                 $key => $value,
@@ -68,7 +68,7 @@ class Enum implements CastsAttributes
         }
 
         return [
-            $key => $this->enumClass::defaultMember(),
+            $key => $this->enumClass::defaultMember()->value(),
         ];
     }
 }
