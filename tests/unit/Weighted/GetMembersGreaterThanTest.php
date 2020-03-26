@@ -28,7 +28,7 @@ class GetMembersGreaterThanTest extends TestCase
     /**
      * Data provider for the test `testIsGreaterThan`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {
@@ -64,7 +64,7 @@ class GetMembersGreaterThanTest extends TestCase
     /**
      * @dataProvider dataProvider
      * @param \Sourceboat\Enumeration\Tests\FruitType $member
-     * @param array $result
+     * @param array<mixed> $result
      * @return void
      */
     public function testGetMembersGreaterThan(FruitType $member, array $result): void

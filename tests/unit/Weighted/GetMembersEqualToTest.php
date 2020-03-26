@@ -28,7 +28,7 @@ class GetMembersEqualToTest extends TestCase
     /**
      * Data provider for the test `testIsEqualTo`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {
@@ -63,7 +63,7 @@ class GetMembersEqualToTest extends TestCase
     /**
      * @dataProvider dataProvider
      * @param \Sourceboat\Enumeration\Tests\FruitType $member
-     * @param array $result
+     * @param array<mixed> $result
      * @return void
      */
     public function testGetMembersEqualTo(FruitType $member, array $result): void

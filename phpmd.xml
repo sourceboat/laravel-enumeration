@@ -3,6 +3,7 @@
     <description>The coding standard for this project.</description>
     <rule ref="rulesets/cleancode.xml">
       <exclude name="StaticAccess" />
+      <exclude name="BooleanArgumentFlag" />
     </rule>
     <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/controversial.xml" />

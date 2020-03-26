@@ -27,7 +27,7 @@ class IsLessThanOrEqualToTest extends TestCase
     /**
      * Data provider for the test `testIsLessThan`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {

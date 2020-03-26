@@ -9,7 +9,7 @@ class IsEnumKeyTest extends TestCase
     /**
      * Data provider for the test `testIsEnumKey`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {
