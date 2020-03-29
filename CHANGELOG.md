@@ -2,6 +2,9 @@
 
 ## Next release
 
+
+## 2.0.0 - 2020-03-29 - major release
+
 ### Added
 - Laravel 7.x support
 - Laravel 7 custom casts
@@ -12,6 +15,7 @@
 - Dropped Support for versions of PHP lower than 7.3
 - Removed `HasEnums`-trait in favor of custom casts
 - Removed possibility to set weight path by static property to prevent notices when accessing undefined properties
+
 
 ## 1.3.0 - 2019-08-31 - minor release
 
