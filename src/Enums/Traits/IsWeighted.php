@@ -18,7 +18,7 @@ trait IsWeighted
      */
     public static function getWeightOptionsKey(): string
     {
-        return static::$weightOptionsKey ?? sprintf('enums.%s.weights', static::class);
+        return sprintf('enums.%s.weights', static::class);
     }
 
     /**

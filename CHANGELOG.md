@@ -11,6 +11,7 @@
 - Dropped Support for version of Laravel lower than 7.0
 - Dropped Support for versions of PHP lower than 7.3
 - Removed `HasEnums`-trait in favor of custom casts
+- Removed possibility to set weight path by static property to prevent notices when accessing undefined properties
 
 ## 1.3.0 - 2019-08-31 - minor release
 

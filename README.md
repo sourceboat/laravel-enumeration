@@ -342,8 +342,6 @@ final class UserType extends Enumeration implements Weighted
     const Moderator = 1;
     const Subscriber = 2;
     const SuperAdministrator = 3;
-
-    protected static $weightOptionsKey = 'test'; // optional, by standard its `sprintf('enums.%s.weights', static::class)`
 }
 ```
 
