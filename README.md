@@ -386,6 +386,70 @@ Available scopes:
 * `whereBetweenEnum(string $attribute, Weighted $lowerMember, Weighted $higherMember)`
 * `whereBetweenOrEqualEnum(string $attribute, Weighted $lowerMember, Weighted $higherMember)`
 
+
+## Configurable Enums
+
+It is possible to define config values for enums and access them without defining the whole path, but a logical part of it.
+The default path for the configuration is: `enums.<enum class>.<given key>.<enum value>`
+
+For example:
+
+``` php
+// The Enum
+<?php
+
+namespace App\Enums;
+
+use Sourceboat\Enumeration\Enumeration;
+use Sourceboat\Enumeration\Enums\Interfaces\Configurable;
+use Sourceboat\Enumeration\Enums\Traits\IsConfigurable;
+
+/**
+ * @method static \App\Enums\UserType Administrator()
+ * @method static \App\Enums\UserType Moderator()
+ * @method static \App\Enums\UserType Subscriber()
+ * @method static \App\Enums\UserType SuperAdministrator()
+ */
+final class UserType extends Enumeration implements Configurable
+{
+    use IsConfigurable;
+
+    const Administrator = 0;
+    const Moderator = 1;
+    const Subscriber = 2;
+    const SuperAdministrator = 3;
+}
+```
+
+``` php
+// enums.php
+<?php
+use App\Enums\UserType;
+
+return [
+    UserType::class => [
+        'permissions' => [
+            UserType::Administrator => [
+                'user.foreign.edit',
+                'user.foreign.delete',
+            ],
+            UserType::Subscriber => [
+                'user.self.edit',
+                'user.self.delete',
+            ],
+        ]
+    ]
+]
+```
+
+then you can access these values by:
+
+``` php 
+UserType::Subscriber()->config('permissions'); // which return the given array.
+UserType::Moderator()->config('permissions', ['thread.foreign.archive']); // you can also define a default value.
+```
+
+
 ## License information
 
 Much of the functionality in this Package is inspired by [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum) and some code has been taken from it and modified, for example the `MakeEnumCommand.php`, the `EnumServiceProvider.php` and this readme.
