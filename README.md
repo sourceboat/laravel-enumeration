@@ -27,29 +27,22 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 * [Methods](#methods)
 * [Validation](#validation)
 * [Localization](#localization)
-* [Model Trait](#model-trait)
+* [Custom cast](#custom-cast)
 * [Weighted Enums](#weighted-enums)
 * [License information](#license-information)
 
 ## Requirements
 
 * eloquent/enumeration 6.0 or newer
-* Laravel 5.7 or newer;
-* PHP 7.1 or newer
+* Laravel 7 or newer;
+* PHP 7.3 or newer
 
 ## Install
 
 Via Composer
 
 ``` bash
-
-$ composer require sourceboat/laravel-enumeration
-```
-
-If you're using Laravel < 5.5 you'll need to add the service provider to `config/app.php`
-
-``` php
-'Sourceboat\Enumeration\EnumerationServiceProvider'
+composer require sourceboat/laravel-enumeration
 ```
 
 ## Generating enums
@@ -269,11 +262,9 @@ return [
 ];
 ```
 
-## Model Trait
+## Custom Cast
 
-You can use the `HasEnums` trait to enable automatic casting of properties to enums. When used, it also automatically checks if a value set to an enum property is valid, if not it throws an `UndefinedMemberException`.
-
-To enable this functionality you will have to use the trait and set the enums property on your model.
+You can use the `Enum` custom cast to enable automatic casting of properties to enums. When used, it will set the property to the default members value when set to an invalid value, same goes when the initial value is invalid when getting it, it will return the default member.
 
 ```php
 <?php
@@ -282,19 +273,17 @@ namespace App\Models;
 
 use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
-use Sourceboat\Enumeration\Traits\HasEnums;
+use Sourceboat\Enumeration\Casts\Enum;
 
 class User extends Model
 {
-    use HasEnums;
-
-    protected $enums = [
-        'type' => UserType::class,
+    protected $casts = [
+        'type' => Enums::class . ':' . UserType::class,
     ];
 }
 ```
 
-The enums property is a simple mapping of model attributes to enum classes. For cases where you want an attribute to be nullable, but don't want to have a `null`-value member in your enum, you can specify this explicitly:
+By default the custom cast treats the property as nullable, meaning that the property can be set to null and also return it, instead of an enum member, this can the disabled on an per property basis:
 
 ```php
 <?php
@@ -303,16 +292,14 @@ namespace App\Models;
 
 use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
-use Sourceboat\Enumeration\Traits\HasEnums;
+use Sourceboat\Enumeration\Casts\Enum;
 
 class User extends Model
 {
-    use HasEnums;
-
-    protected $enums = [
-        'type' => [ 'nullable' => true, 'enum' => UserType::class ],
-    ];
-}
+    protected $casts = [
+        'type' => Enums::class . ':' . UserType::class . ',0', // appending the 0 means it is not nullable,
+    ];                                                         // this seems counter intuitive, but thats the way it is recognized as `false`,
+}                                                              // as `false` is somehow evaluated as `true`.
 ```
 
 If the casted attribute is not set to be nullable and/or has a value not represented by the enum, you will get the default member of the enum when accessing the attribute.
@@ -329,7 +316,7 @@ echo $type->value; // "0"
 
 ## Weighted Enums
 
-It is Possible to define weights for enum members. the standard way is to define the weights a config file and them implement the `Weighted`-interface with the `IsWeighted`-trait and define the path to your config. The weigths can be defined as integer or float values.
+It is Possible to define weights for enum members. the standard way is to define the weights a config file and them implement the `Weighted`-interface with the `IsWeighted`-trait and define the path to your config. The weights can be defined as integer or float values.
 
 ``` php
 // The Enum
@@ -355,8 +342,6 @@ final class UserType extends Enumeration implements Weighted
     const Moderator = 1;
     const Subscriber = 2;
     const SuperAdministrator = 3;
-
-    protected static $weightOptionsKey = 'test'; // optional, by standard its `sprintf('enums.%s.weights', static::class)`
 }
 ```
 
@@ -398,6 +383,70 @@ Available scopes:
 * `whereLessThanEnum(string $attribute, Weighted $member)`
 * `whereBetweenEnum(string $attribute, Weighted $lowerMember, Weighted $higherMember)`
 * `whereBetweenOrEqualEnum(string $attribute, Weighted $lowerMember, Weighted $higherMember)`
+
+
+## Configurable Enums
+
+It is possible to define config values for enums and access them without defining the whole path, but a logical part of it.
+The default path for the configuration is: `enums.<enum class>.<given key>.<enum value>`
+
+For example:
+
+``` php
+// The Enum
+<?php
+
+namespace App\Enums;
+
+use Sourceboat\Enumeration\Enumeration;
+use Sourceboat\Enumeration\Enums\Interfaces\Configurable;
+use Sourceboat\Enumeration\Enums\Traits\IsConfigurable;
+
+/**
+ * @method static \App\Enums\UserType Administrator()
+ * @method static \App\Enums\UserType Moderator()
+ * @method static \App\Enums\UserType Subscriber()
+ * @method static \App\Enums\UserType SuperAdministrator()
+ */
+final class UserType extends Enumeration implements Configurable
+{
+    use IsConfigurable;
+
+    const Administrator = 0;
+    const Moderator = 1;
+    const Subscriber = 2;
+    const SuperAdministrator = 3;
+}
+```
+
+``` php
+// enums.php
+<?php
+use App\Enums\UserType;
+
+return [
+    UserType::class => [
+        'permissions' => [
+            UserType::Administrator => [
+                'user.foreign.edit',
+                'user.foreign.delete',
+            ],
+            UserType::Subscriber => [
+                'user.self.edit',
+                'user.self.delete',
+            ],
+        ]
+    ]
+]
+```
+
+then you can access these values by:
+
+``` php 
+UserType::Subscriber()->config('permissions'); // which return the given array.
+UserType::Moderator()->config('permissions', ['thread.foreign.archive']); // you can also define a default value.
+```
+
 
 ## License information
 

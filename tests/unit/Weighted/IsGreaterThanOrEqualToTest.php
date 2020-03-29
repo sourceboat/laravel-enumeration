@@ -27,7 +27,7 @@ class IsGreaterThanOrEqualToTest extends TestCase
     /**
      * Data provider for the test `testIsGreaterThan`.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function dataProvider(): array
     {

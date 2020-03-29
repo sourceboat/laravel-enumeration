@@ -4,7 +4,7 @@ namespace Sourceboat\Enumeration\Tests;
 
 use Eloquent\Enumeration\Exception\UndefinedMemberException;
 
-class ModelHasEnumsTraitTest extends TestCase
+class ModelCastsEnumsTest extends TestCase
 {
     public function setUp(): void
     {
@@ -38,12 +38,8 @@ class ModelHasEnumsTraitTest extends TestCase
      */
     public function testSetterValidationWithWrongValue(): void
     {
-        try {
-            $this->model->role = 'test';
-            $this->assertTrue(false, 'undefined value was set.');
-        } catch (UndefinedMemberException $e) {
-            $this->assertTrue(true);
-        }
+        $this->model->role = 'test';
+        $this->assertEquals(UserRole::defaultMember(), $this->model->role);
     }
 
     /**

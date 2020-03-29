@@ -34,7 +34,6 @@
     <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedExtends"/>
     <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedUse"/>
     <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.PartialUse"/>
-    <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces"/>
     <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification"/>
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification"/>
@@ -47,6 +46,9 @@
     <exclude name="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing.IncorrectLinesCountAfterControlStructure"/>
     <exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
     <exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
+    <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint"/>
+    <exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
+    <exclude name="SlevomatCodingStandard.Functions.RequireArrowFunction"/>
 	</rule>
 
   <!-- exclude directories from certain rules -->
@@ -57,7 +59,11 @@
   <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
     <exclude-pattern>*/database/*</exclude-pattern>
   </rule>
-  <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint">
-    <exclude-pattern>*/tests/*</exclude-pattern>
+
+  <rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces">
+    <properties>
+        <property name="linesCountAfterOpeningBrace" value="0" />
+        <property name="linesCountBeforeClosingBrace" value="0" />
+    </properties>
   </rule>
 </ruleset>
