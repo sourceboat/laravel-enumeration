@@ -34,7 +34,7 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 ## Requirements
 
 * eloquent/enumeration 6.0 or newer
-* Laravel 7 or newer;
+* Laravel 7.5 or newer;
 * PHP 7.3 or newer
 
 ## Install
@@ -312,6 +312,24 @@ $type = $user->type
 
 echo $type === UserType::defaultMember(); // "true"
 echo $type->value; // "0"
+```
+
+Since Laravel 7.5 and version 2.1 of this package it is also possible to use the enum itself as cast type hint, but beware that `null` is always an allowed value.
+
+```php
+<?php
+
+namespace App\Models;
+
+use App\Enums\UserType;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    protected $casts = [
+        'type' => UserType::class, 
+    ];
+}
 ```
 
 ## Weighted Enums

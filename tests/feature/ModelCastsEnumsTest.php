@@ -30,6 +30,7 @@ class ModelCastsEnumsTest extends TestCase
     public function testGetNullWhenNotSetAndNullable(): void
     {
         $this->assertNull($this->model->type);
+        $this->assertNull($this->model->typeCastable);
     }
 
     /**
@@ -70,6 +71,24 @@ class ModelCastsEnumsTest extends TestCase
             $this->model->type = null;
             $this->assertTrue(true);
             $this->assertNull($this->model->type);
+        } catch (UndefinedMemberException $e) {
+            $this->assertTrue(false, 'Correct value was rejected');
+        }
+    }
+
+    /**
+     * Check if the validation when setting an enum-property
+     * with a correct value of null throws no exception.
+     */
+    public function testSetterValidationWithCorrectNullValueCastable(): void
+    {
+        try {
+            $this->model->typeCastable = FruitType::NUT();
+            $this->assertEquals(FruitType::NUT(), $this->model->typeCastable);
+
+            $this->model->typeCastable = null;
+            $this->assertTrue(true);
+            $this->assertNull($this->model->typeCastable);
         } catch (UndefinedMemberException $e) {
             $this->assertTrue(false, 'Correct value was rejected');
         }

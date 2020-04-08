@@ -3,7 +3,10 @@
 namespace Sourceboat\Enumeration;
 
 use Eloquent\Enumeration\AbstractEnumeration;
+use Illuminate\Contracts\Database\Eloquent\Castable;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Support\Str;
+use Sourceboat\Enumeration\Casts\Enum;
 use Sourceboat\Enumeration\Rules\EnumerationValue;
 
 /**
@@ -11,7 +14,7 @@ use Sourceboat\Enumeration\Rules\EnumerationValue;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-abstract class Enumeration extends AbstractEnumeration
+abstract class Enumeration extends AbstractEnumeration implements Castable
 {
     /**
      * Path to the localization for the enum-values.
@@ -223,5 +226,10 @@ abstract class Enumeration extends AbstractEnumeration
 
             return $this->is(static::memberByKey($key, false));
         }
+    }
+
+    public static function castUsing(): CastsAttributes
+    {
+        return new Enum(static::class);
     }
 }
