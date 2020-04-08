@@ -10,5 +10,6 @@ class TestModel extends Model
     protected $casts = [
         'role' => Enum::class . ':' . UserRole::class . ',0',
         'type' => Enum::class . ':' . FruitType::class,
+        'typeCastable' => FruitType::class,
     ];
 }

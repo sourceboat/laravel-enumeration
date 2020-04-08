@@ -314,6 +314,24 @@ echo $type === UserType::defaultMember(); // "true"
 echo $type->value; // "0"
 ```
 
+Since Laravel 7.5 and version 2.1 of this package it is also possible to use the enum itself as cast type hint, but beware that `null` is always an allowed value.
+
+```php
+<?php
+
+namespace App\Models;
+
+use App\Enums\UserType;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    protected $casts = [
+        'type' => UserType::class, 
+    ];
+}
+```
+
 ## Weighted Enums
 
 It is Possible to define weights for enum members. the standard way is to define the weights a config file and them implement the `Weighted`-interface with the `IsWeighted`-trait and define the path to your config. The weights can be defined as integer or float values.

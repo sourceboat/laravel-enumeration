@@ -11,7 +11,9 @@
         "validation",
         "localization",
         "typed",
-        "extendible"
+        "extendible",
+        "castable",
+        "casts"
     ],
     "license": "MIT",
     "homepage": "https://github.com/sourceboat/laravel-enumeration",
@@ -26,15 +28,15 @@
     "require": {
         "php": ">=7.3",
         "eloquent/enumeration": "^6.0",
-        "illuminate/console": ">=7.0",
-        "illuminate/contracts": ">=7.0",
-        "illuminate/support": ">=7.0"
+        "illuminate/console": ">=7.5",
+        "illuminate/contracts": ">=7.5",
+        "illuminate/support": ">=7.5"
     },
     "require-dev": {
         "consistence/coding-standard": "3.10",
         "orchestra/testbench": "^5.0",
         "phpmd/phpmd": "^2.6",
-        "phpunit/phpunit": "8.3.* || 8.4.* || 8.5.* || 9.0.*",
+        "phpunit/phpunit": "9.*",
         "slevomat/coding-standard": "6.0.8",
         "squizlabs/php_codesniffer": "^3.5"
     },
