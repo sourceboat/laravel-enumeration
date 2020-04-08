@@ -2,6 +2,9 @@
 
 ## Next release
 
+
+## 2.1.0 - 2020-04-08 - minor release
+
 ### Added
 - Implementation of the `Castable` interface of Laravel 7.5 
 
