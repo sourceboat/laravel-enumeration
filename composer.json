@@ -33,7 +33,7 @@
         "illuminate/support": ">=7.5"
     },
     "require-dev": {
-        "consistence/coding-standard": "3.10",
+        "consistence/coding-standard": "3.10.1",
         "orchestra/testbench": "^5.0",
         "phpmd/phpmd": "^2.6",
         "phpunit/phpunit": "9.*",
