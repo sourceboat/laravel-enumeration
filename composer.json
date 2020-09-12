@@ -34,7 +34,7 @@
     },
     "require-dev": {
         "consistence/coding-standard": "3.10.1",
-        "orchestra/testbench": "^5.0",
+        "orchestra/testbench": "^5.0 || ^6.0",
         "phpmd/phpmd": "^2.6",
         "phpunit/phpunit": "9.*",
         "slevomat/coding-standard": "6.0.8",
