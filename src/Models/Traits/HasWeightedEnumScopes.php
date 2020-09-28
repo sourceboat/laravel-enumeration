@@ -13,7 +13,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column greater than that enum member.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $enumMember
      * @return \Illuminate\Database\Eloquent\Builder
@@ -26,7 +26,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column greater than that enum member.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $enumMember
      * @return \Illuminate\Database\Eloquent\Builder
@@ -39,7 +39,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column greater than that enum member.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $enumMember
      * @return \Illuminate\Database\Eloquent\Builder
@@ -52,7 +52,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column greater than that enum member.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $enumMember
      * @return \Illuminate\Database\Eloquent\Builder
@@ -65,7 +65,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column greater than that enum member.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $enumMember
      * @return \Illuminate\Database\Eloquent\Builder
@@ -78,7 +78,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column between the enum members.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher
@@ -92,7 +92,7 @@ trait HasWeightedEnumScopes
     /**
      * Get all models with a column between or equal to the enum members.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $column
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $lower
      * @param \Sourceboat\Enumeration\Enums\Interfaces\Weighted $higher

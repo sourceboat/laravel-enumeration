@@ -19,10 +19,10 @@ class Enum implements CastsAttributes
     /**
      * Transform the attribute from the underlying model values.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  string  $key
-     * @param  mixed  $value
-     * @param  array<mixed>  $attributes
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param string $key
+     * @param mixed $value
+     * @param array<mixed> $attributes
      * @return self|null
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
@@ -44,18 +44,17 @@ class Enum implements CastsAttributes
     /**
      * Transform the attribute to its underlying model values.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  string  $key
-     * @param  mixed  $value
-     * @param  array<mixed>  $attributes
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param string $key
+     * @param mixed $value
+     * @param array<mixed> $attributes
      * @return array<mixed>
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function set($model, string $key, $value, array $attributes): array
     {
-        if ($this->enumClass::hasValue($value)
-            || ($this->nullable && is_null($value))) {
+        if ($this->enumClass::hasValue($value) || ($this->nullable && is_null($value))) {
             return [
                 $key => $value,
             ];

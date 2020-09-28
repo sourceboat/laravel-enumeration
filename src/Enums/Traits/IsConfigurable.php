@@ -10,20 +10,10 @@ namespace Sourceboat\Enumeration\Enums\Traits;
 trait IsConfigurable
 {
     /**
-     * Get the config path for this enum.
-     *
-     * @return string
-     */
-    public static function configPath(): string
-    {
-        return sprintf('enums.%s', static::class);
-    }
-
-    /**
      * Get the config key from this enum for the given path and subkey.
      *
-     * @param  string $path
-     * @param  string $subKey
+     * @param string $path
+     * @param string $subKey
      * @return string
      */
     public function getConfigKey(string $path, string $subKey): string
@@ -41,5 +31,15 @@ trait IsConfigurable
     public function config(string $key, $default = null)
     {
         return config($this->getConfigKey(static::configPath(), $key), $default);
+    }
+
+    /**
+     * Get the config path for this enum.
+     *
+     * @return string
+     */
+    public static function configPath(): string
+    {
+        return sprintf('enums.%s', static::class);
     }
 }

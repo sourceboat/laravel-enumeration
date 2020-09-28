@@ -34,7 +34,7 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 ## Requirements
 
 * eloquent/enumeration 6.0 or newer
-* Laravel 7.5 or newer;
+* Laravel 8.0 or newer;
 * PHP 7.3 or newer
 
 ## Install
