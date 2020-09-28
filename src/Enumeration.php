@@ -24,13 +24,27 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
     protected static $localizationPath = null;
 
     /**
-     * Get the localization path for this enum.
+     * Get the default enum member.
+     * Override for your own value / logic.
      *
-     * @return string
+     * @return static
      */
-    protected static function getLocalizationPath(): string
+    public static function defaultMember()
     {
-        return static::$localizationPath ?? sprintf('enums.%s', static::class);
+        return collect(static::members())
+            ->first();
+    }
+
+    /**
+     * Get a random member of this enum.
+     *
+     * @param array<mixed>|null $blacklist
+     * @return static
+     */
+    public static function randomMember(?array $blacklist = [])
+    {
+        return collect(self::membersByBlacklist($blacklist))
+            ->random();
     }
 
     /**
@@ -61,7 +75,10 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
      */
     public static function values(): array
     {
-        return collect(self::members())->map->value()->values()->all();
+        return collect(self::members())
+            ->map->value()
+            ->values()
+            ->all();
     }
 
     /**
@@ -71,7 +88,10 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
      */
     public static function localizedValues(): array
     {
-        return collect(self::members())->map->localized()->values()->all();
+        return collect(self::members())
+            ->map->localized()
+            ->values()
+            ->all();
     }
 
     /**
@@ -81,7 +101,10 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
      */
     public static function keys(): array
     {
-        return collect(self::members())->map->key()->values()->all();
+        return collect(self::members())
+            ->map->key()
+            ->values()
+            ->all();
     }
 
     /**
@@ -94,8 +117,9 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
     {
         return collect(self::membersByBlacklist($blacklist))
             ->mapWithKeys(static function (Enumeration $item): array {
-                return [ $item->value() => $item->localized() ];
-            })->all();
+                return [$item->value() => $item->localized()];
+            })
+            ->all();
     }
 
     /**
@@ -108,8 +132,9 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
     {
         return collect(self::membersByBlacklist($blacklist))
             ->mapWithKeys(static function (Enumeration $item): array {
-                return [ $item->value() => $item->key() ];
-            })->all();
+                return [$item->value() => $item->key()];
+            })
+            ->all();
     }
 
     /**
@@ -120,20 +145,9 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
      */
     public static function membersByBlacklist(?array $blacklist = []): array
     {
-        return collect(self::membersByPredicate(static function (Enumeration $enumValue) use ($blacklist): bool {
+        return self::membersByPredicate(static function (Enumeration $enumValue) use ($blacklist): bool {
             return !$enumValue->anyOfArray($blacklist);
-        }))->all();
-    }
-
-    /**
-     * Get a random member of this enum.
-     *
-     * @param array<mixed>|null $blacklist
-     * @return static
-     */
-    public static function randomMember(?array $blacklist = [])
-    {
-        return collect(self::membersByBlacklist($blacklist))->random();
+        });
     }
 
     /**
@@ -169,17 +183,6 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
     }
 
     /**
-     * Get the default enum member.
-     * Override for your own value / logic.
-     *
-     * @return static
-     */
-    public static function defaultMember()
-    {
-        return collect(static::members())->first();
-    }
-
-    /**
      * Checks if this enum has a member with the given value.
      *
      * @param mixed $value
@@ -187,7 +190,7 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
      */
     public static function hasValue($value): bool
     {
-        return in_array($value, static::values());
+        return in_array($value, static::values(), true);
     }
 
     /**
@@ -198,7 +201,26 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
      */
     public static function hasKey(string $key): bool
     {
-        return in_array($key, static::keys());
+        return in_array($key, static::keys(), true);
+    }
+
+    /**
+     * @param array<mixed> $arguments
+     * @return \Illuminate\Contracts\Database\Eloquent\CastsAttributes
+     */
+    public static function castUsing(array $arguments): CastsAttributes
+    {
+        return new Enum(static::class, ...$arguments);
+    }
+
+    /**
+     * Get the localization path for this enum.
+     *
+     * @return string
+     */
+    protected static function getLocalizationPath(): string
+    {
+        return static::$localizationPath ?? sprintf('enums.%s', static::class);
     }
 
     /**
@@ -226,10 +248,5 @@ abstract class Enumeration extends AbstractEnumeration implements Castable
 
             return $this->is(static::memberByKey($key, false));
         }
-    }
-
-    public static function castUsing(): CastsAttributes
-    {
-        return new Enum(static::class);
     }
 }
