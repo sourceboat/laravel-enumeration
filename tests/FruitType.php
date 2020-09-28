@@ -20,10 +20,10 @@ class FruitType extends Enumeration implements Weighted
 {
     use IsWeighted;
 
-    protected static $localizationPath = 'test';
-
     public const BERRY = 'berry';
     public const NUT = 'nut';
     public const ACCESSORY_FRUIT = 'accessory_fruit';
     public const LEGUME = 'legume';
+
+    protected static $localizationPath = 'test';
 }
