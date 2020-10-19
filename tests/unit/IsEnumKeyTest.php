@@ -2,7 +2,7 @@
 
 namespace Sourceboat\Enumeration\Tests;
 
-use Eloquent\Enumeration\Exception\UndefinedMemberException;
+use Sourceboat\Enumeration\Exceptions\UndefinedMemberException;
 
 class IsEnumKeyTest extends TestCase
 {

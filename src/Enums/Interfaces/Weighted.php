@@ -2,12 +2,10 @@
 
 namespace Sourceboat\Enumeration\Enums\Interfaces;
 
-use Eloquent\Enumeration\EnumerationInterface;
-
 /**
  * Defines the interface for weighted enums.
  */
-interface Weighted extends EnumerationInterface
+interface Weighted
 {
     /**
      * Get members of this enum greater than this.
