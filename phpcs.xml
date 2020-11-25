@@ -9,6 +9,11 @@
   <!-- general rules -->
   <rule ref="PSR2"/>
   <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+        <property name="ignoreComments" value="true" />
+    </properties>
+  </rule>
 
   <!-- rules from consistence/coding-standard -->
   <rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml">
@@ -49,6 +54,9 @@
     <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint"/>
     <exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
     <exclude name="SlevomatCodingStandard.Functions.RequireArrowFunction"/>
+    <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
+    <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
+    <exclude name="SlevomatCodingStandard.Files.LineLength.LineTooLong"/>
 	</rule>
 
   <!-- exclude directories from certain rules -->

@@ -2,9 +2,9 @@
 
 namespace Sourceboat\Enumeration\Rules;
 
-use Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Str;
+use Sourceboat\Enumeration\Exceptions\UndefinedMemberExceptionInterface;
 
 class EnumerationValue implements Rule
 {
