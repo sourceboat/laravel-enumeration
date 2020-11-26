@@ -25,5 +25,9 @@ class FruitType extends Enumeration implements Weighted
     public const ACCESSORY_FRUIT = 'accessory_fruit';
     public const LEGUME = 'legume';
 
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected static $localizationPath = 'test';
 }

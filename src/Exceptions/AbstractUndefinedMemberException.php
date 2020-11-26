@@ -9,13 +9,21 @@ use Exception;
  *
  * Copyright © 2017 Erin Millard
  */
-abstract class AbstractUndefinedMemberException extends Exception implements
-    UndefinedMemberExceptionInterface
+abstract class AbstractUndefinedMemberException extends Exception implements UndefinedMemberExceptionInterface
 {
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $className;
 
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $property;
 
+    /** @var mixed */
     private $value;
 
     /**

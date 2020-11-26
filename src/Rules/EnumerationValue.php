@@ -12,13 +12,15 @@ class EnumerationValue implements Rule
      * Class of the enum to check.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     private $enumClass;
 
     /**
      * Whitelist for the enum value to be put in.
      *
-     * @var array
+     * @var array<mixed>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     private $values;
 
@@ -26,6 +28,7 @@ class EnumerationValue implements Rule
      * Determine whether this rule should check case sensitive or not.
      *
      * @var bool
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     private $caseSensitive = false;
 

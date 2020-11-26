@@ -16,8 +16,16 @@ use Exception;
  */
 final class ExtendsConcreteException extends Exception
 {
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $className;
 
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $parentClass;
 
     /**

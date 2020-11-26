@@ -29,13 +29,23 @@ abstract class Enumeration implements Castable
      * Path to the localization for the enum-values.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected static $localizationPath = null;
 
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $key;
 
+    /** @var mixed */
     private $value;
 
+    /**
+     * @var array<static>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private static $members = [];
 
     /**
