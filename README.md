@@ -33,7 +33,6 @@ Enum implementation for Laravel. Based on [eloquent/enumeration](https://github.
 
 ## Requirements
 
-* eloquent/enumeration 6.0 or newer
 * Laravel 8.0 or newer;
 * PHP 7.3 or newer
 
@@ -468,7 +467,7 @@ UserType::Moderator()->config('permissions', ['thread.foreign.archive']); // you
 
 ## License information
 
-Much of the functionality in this Package is inspired by [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum) and some code has been taken from it and modified, for example the `MakeEnumCommand.php`, the `EnumServiceProvider.php` and this readme.
+Much of the functionality in this Package is inspired by [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum) and some code has been taken from it and modified, for example the `MakeEnumCommand.php`, the `EnumServiceProvider.php` and this readme. Some code has been copied from [eloquent/enumeration](https://github.com/eloquent/enumeration), as at first this package build upon it, but due to depending only on a fraction of functionality we concluded it would be better to internalize the code that we used.
 
 - [bensampo/laravel-enum](https://github.com/bensampo/laravel-enum) is licensed under MIT
 - [eloquent/enumeration](https://github.com/eloquent/enumeration) is licensed under MIT
