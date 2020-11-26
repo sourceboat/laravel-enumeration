@@ -10,6 +10,7 @@ class MakeEnumerationCommand extends GeneratorCommand
      * The console command name.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $name = 'make:enum';
 
@@ -17,6 +18,7 @@ class MakeEnumerationCommand extends GeneratorCommand
      * The console command description.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $description = 'Create a new enum class';
 
@@ -24,6 +26,7 @@ class MakeEnumerationCommand extends GeneratorCommand
      * The type of class being generated.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $type = 'Enum';
 

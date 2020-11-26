@@ -2,7 +2,7 @@
 
 namespace Sourceboat\Enumeration\Tests;
 
-use Eloquent\Enumeration\Exception\UndefinedMemberException;
+use Sourceboat\Enumeration\Exceptions\UndefinedMemberException;
 
 class ModelCastsEnumsTest extends TestCase
 {
@@ -10,7 +10,7 @@ class ModelCastsEnumsTest extends TestCase
     {
         parent::setUp();
 
-        $this->model = new TestModel;
+        $this->model = new TestModel();
     }
 
     /**

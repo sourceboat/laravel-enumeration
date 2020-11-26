@@ -6,8 +6,16 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class Enum implements CastsAttributes
 {
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $enumClass;
 
+    /**
+     * @var bool
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private $nullable;
 
     public function __construct(string $enumClass, bool $nullable = true)
