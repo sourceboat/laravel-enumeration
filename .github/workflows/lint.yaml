@@ -1,5 +1,5 @@
 name: "Lint PHP"
-on: [ push, pull_request ]
+on: [ pull_request ]
 jobs:
   phpcs:
     name: PHPCS
