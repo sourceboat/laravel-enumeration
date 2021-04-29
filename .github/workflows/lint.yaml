@@ -1,5 +1,10 @@
 name: "Lint PHP"
-on: [ pull_request ]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - develop
 jobs:
   phpcs:
     name: PHPCS
@@ -20,7 +25,7 @@ jobs:
           tools: composer
 
       - name: Install dependencies
-        run: composer update --no-interaction --no-suggest --no-progress --optimize-autoloader --quiet
+        run: composer update --no-interaction --no-suggest --no-progress --optimize-autoloader
 
       - name: Run
         run: composer run lint:phpcs

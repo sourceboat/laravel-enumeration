@@ -1,13 +1,25 @@
 name: "Test PHP"
-on: [ pull_request ]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - develop
 jobs:
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-20.04
+    continue-on-error: ${{ matrix.allowed-to-fail }}
     strategy:
       matrix:
         php-versions: ['7.3', '7.4', '8.0']
         composer-arguments: ['--prefer-lowest', '']
+        allowed-to-fail: [false]
+        include:
+          - php-versions: '8.1'
+            composer-arguments: ['--prefer-lowest', '']
+            allowed-to-fail: true
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,7 +33,7 @@ jobs:
           tools: composer
 
       - name: Install dependencies
-        run: composer update --no-interaction --no-suggest --no-progress --optimize-autoloader ${{ matrix.composer-arguments }}
+        run: composer update --no-interaction --no-suggest --no-progress --optimize-autoloader --quiet ${{ matrix.composer-arguments }}
 
-      - name: Run
+      - name: Run tests
         run: composer run test
