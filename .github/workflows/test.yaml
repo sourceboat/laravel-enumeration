@@ -1,8 +1,8 @@
-name: "Lint PHP"
+name: "Test PHP"
 on: [ push, pull_request ]
 jobs:
-  phpcs:
-    name: PHPCS
+  phpunit:
+    name: PHPUnit
     runs-on: ubuntu-20.04
     strategy:
       matrix:
