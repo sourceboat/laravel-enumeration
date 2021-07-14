@@ -1,9 +1,9 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
 use Illuminate\Support\Str;
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\TestCase;
 
 class GetMembersEqualToTest extends TestCase
 {

@@ -1,6 +1,10 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit;
+
+use Sourceboat\Enumeration\Tests\FruitType;
+use Sourceboat\Enumeration\Tests\TestCase;
+use Sourceboat\Enumeration\Tests\UserRole;
 
 class GetKeysTest extends TestCase
 {

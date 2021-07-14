@@ -1,11 +1,11 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
 use Illuminate\Support\Str;
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\TestCase;
 
-class GetMembersBetweenOrEqualToTest extends TestCase
+class GetMembersLessThanOrEqualToTest extends TestCase
 {
     public function setUp(): void
     {
@@ -26,7 +26,7 @@ class GetMembersBetweenOrEqualToTest extends TestCase
     }
 
     /**
-     * Data provider for the test `testGetMembersBetweenOrEqualTo`.
+     * Data provider for the test `testIsLessThanOrEqualTo`.
      *
      * @return array<mixed>
      */
@@ -35,13 +35,11 @@ class GetMembersBetweenOrEqualToTest extends TestCase
         return [
             [
                 FruitType::NUT(),
-                FruitType::NUT(),
                 [
                     Str::upper(FruitType::NUT) => FruitType::NUT(),
                 ],
             ],
             [
-                FruitType::NUT(),
                 FruitType::BERRY(),
                 [
                     Str::upper(FruitType::NUT) => FruitType::NUT(),
@@ -49,7 +47,6 @@ class GetMembersBetweenOrEqualToTest extends TestCase
                 ],
             ],
             [
-                FruitType::NUT(),
                 FruitType::LEGUME(),
                 [
                     Str::upper(FruitType::NUT) => FruitType::NUT(),
@@ -58,7 +55,6 @@ class GetMembersBetweenOrEqualToTest extends TestCase
                 ],
             ],
             [
-                FruitType::NUT(),
                 FruitType::ACCESSORY_FRUIT(),
                 [
                     Str::upper(FruitType::NUT) => FruitType::NUT(),
@@ -72,14 +68,13 @@ class GetMembersBetweenOrEqualToTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     * @param \Sourceboat\Enumeration\Tests\FruitType $lower
-     * @param \Sourceboat\Enumeration\Tests\FruitType $higher
+     * @param \Sourceboat\Enumeration\Tests\FruitType $member
      * @param array<mixed> $result
      * @return void
      */
-    public function testGetMembersBetweenOrEqualTo(FruitType $lower, FruitType $higher, array $result): void
+    public function testGetMembersLessThanOrEqualTo(FruitType $member, array $result): void
     {
-        $this->assertEquals($result, FruitType::getMembersBetweenOrEqualTo($lower, $higher));
-        $this->assertEquals($result, $lower->getMembersBetweenOrEqualToThisAnd($higher));
+        $this->assertEquals($result, FruitType::getMembersLessThanOrEqualTo($member));
+        $this->assertEquals($result, $member->getMembersLessThanOrEqualToThis());
     }
 }

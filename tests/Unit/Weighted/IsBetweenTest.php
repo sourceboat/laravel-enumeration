@@ -1,10 +1,10 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\TestCase;
 
-class IsBetweenOrEqualToTest extends TestCase
+class IsBetweenTest extends TestCase
 {
     public function setUp(): void
     {
@@ -25,17 +25,16 @@ class IsBetweenOrEqualToTest extends TestCase
     }
 
     /**
-     * Data provider for the test `testIsBetweenOrEqualTo`.
+     * Data provider for the test `testIsBetween`.
      *
      * @return array<mixed>
      */
     public function dataProvider(): array
     {
         return [
-            [ FruitType::BERRY(), FruitType::ACCESSORY_FRUIT(), FruitType::NUT(), false ],
-            [ FruitType::BERRY(), FruitType::ACCESSORY_FRUIT(), FruitType::BERRY(), true ],
-            [ FruitType::BERRY(), FruitType::ACCESSORY_FRUIT(), FruitType::LEGUME(), true ],
-            [ FruitType::BERRY(), FruitType::ACCESSORY_FRUIT(), FruitType::ACCESSORY_FRUIT(), true ],
+            [ FruitType::NUT(), FruitType::ACCESSORY_FRUIT(), FruitType::NUT(), false ],
+            [ FruitType::NUT(), FruitType::ACCESSORY_FRUIT(), FruitType::BERRY(), true ],
+            [ FruitType::NUT(), FruitType::ACCESSORY_FRUIT(), FruitType::ACCESSORY_FRUIT(), false ],
         ];
     }
 
@@ -47,8 +46,8 @@ class IsBetweenOrEqualToTest extends TestCase
      * @param bool $result
      * @return void
      */
-    public function testIsBetweenOrEqualTo(FruitType $lower, FruitType $higher, FruitType $needle, bool $result): void
+    public function testIsBetween(FruitType $lower, FruitType $higher, FruitType $needle, bool $result): void
     {
-        $this->assertEquals($result, $needle->isBetweenOrEqualTo($lower, $higher));
+        $this->assertEquals($result, $needle->isBetween($lower, $higher));
     }
 }

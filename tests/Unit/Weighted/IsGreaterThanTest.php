@@ -1,8 +1,8 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\TestCase;
 
 class IsGreaterThanTest extends TestCase
 {

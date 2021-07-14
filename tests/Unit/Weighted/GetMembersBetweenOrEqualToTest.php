@@ -1,11 +1,12 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
 use Illuminate\Support\Str;
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\FruitType;
+use Sourceboat\Enumeration\Tests\TestCase;
 
-class GetMembersBetweenTest extends TestCase
+class GetMembersBetweenOrEqualToTest extends TestCase
 {
     public function setUp(): void
     {
@@ -26,7 +27,7 @@ class GetMembersBetweenTest extends TestCase
     }
 
     /**
-     * Data provider for the test `testGetMembersBetween`.
+     * Data provider for the test `testGetMembersBetweenOrEqualTo`.
      *
      * @return array<mixed>
      */
@@ -36,26 +37,35 @@ class GetMembersBetweenTest extends TestCase
             [
                 FruitType::NUT(),
                 FruitType::NUT(),
-                [],
+                [
+                    Str::upper(FruitType::NUT) => FruitType::NUT(),
+                ],
             ],
             [
                 FruitType::NUT(),
                 FruitType::BERRY(),
-                [],
+                [
+                    Str::upper(FruitType::NUT) => FruitType::NUT(),
+                    Str::upper(FruitType::BERRY) => FruitType::BERRY(),
+                ],
             ],
             [
                 FruitType::NUT(),
                 FruitType::LEGUME(),
                 [
+                    Str::upper(FruitType::NUT) => FruitType::NUT(),
                     Str::upper(FruitType::BERRY) => FruitType::BERRY(),
+                    Str::upper(FruitType::LEGUME) => FruitType::LEGUME(),
                 ],
             ],
             [
                 FruitType::NUT(),
                 FruitType::ACCESSORY_FRUIT(),
                 [
+                    Str::upper(FruitType::NUT) => FruitType::NUT(),
                     Str::upper(FruitType::BERRY) => FruitType::BERRY(),
                     Str::upper(FruitType::LEGUME) => FruitType::LEGUME(),
+                    Str::upper(FruitType::ACCESSORY_FRUIT) => FruitType::ACCESSORY_FRUIT(),
                 ],
             ],
         ];
@@ -68,9 +78,9 @@ class GetMembersBetweenTest extends TestCase
      * @param array<mixed> $result
      * @return void
      */
-    public function testGetMembersBetween(FruitType $lower, FruitType $higher, array $result): void
+    public function testGetMembersBetweenOrEqualTo(FruitType $lower, FruitType $higher, array $result): void
     {
-        $this->assertEquals($result, FruitType::getMembersBetween($lower, $higher));
-        $this->assertEquals($result, $lower->getMembersBetweenThisAnd($higher));
+        $this->assertEquals($result, FruitType::getMembersBetweenOrEqualTo($lower, $higher));
+        $this->assertEquals($result, $lower->getMembersBetweenOrEqualToThisAnd($higher));
     }
 }

@@ -1,8 +1,12 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Feature;
 
 use Sourceboat\Enumeration\Exceptions\UndefinedMemberException;
+use Sourceboat\Enumeration\Tests\FruitType;
+use Sourceboat\Enumeration\Tests\TestCase;
+use Sourceboat\Enumeration\Tests\TestModel;
+use Sourceboat\Enumeration\Tests\UserRole;
 
 class ModelCastsEnumsTest extends TestCase
 {
