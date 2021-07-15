@@ -9,7 +9,10 @@ use Sourceboat\Enumeration\Tests\UserRole;
 
 class EnumerationValueMethodsTest extends TestCase
 {
-    /** @var array<\Sourceboat\Enumeration\Rules\EnumerationValue> */
+    /**
+     * @var array<\Sourceboat\Enumeration\Rules\EnumerationValue>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     private static $rules;
 
     public static function setUpBeforeClass(): void
@@ -48,6 +51,7 @@ class EnumerationValueMethodsTest extends TestCase
      * @param string|int $value
      * @param bool $expectation
      * @return void
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function testPasses(string $ruleKey, $value, bool $expectation): void
     {
