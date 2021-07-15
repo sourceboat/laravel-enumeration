@@ -51,7 +51,6 @@ class EnumerationValueMethodsTest extends TestCase
      * @param string|int $value
      * @param bool $expectation
      * @return void
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function testPasses(string $ruleKey, $value, bool $expectation): void
     {
