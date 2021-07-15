@@ -1,10 +1,11 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\FruitType;
+use Sourceboat\Enumeration\Tests\TestCase;
 
-class IsLessThanTest extends TestCase
+class IsLessThanOrEqualToTest extends TestCase
 {
     public function setUp(): void
     {
@@ -32,14 +33,14 @@ class IsLessThanTest extends TestCase
     public function dataProvider(): array
     {
         return [
-            [ FruitType::NUT(), FruitType::NUT(), false ],
+            [ FruitType::NUT(), FruitType::NUT(), true ],
             [ FruitType::NUT(), FruitType::BERRY(), true ],
             [ FruitType::NUT(), FruitType::LEGUME(), true ],
             [ FruitType::NUT(), FruitType::ACCESSORY_FRUIT(), true ],
             [ FruitType::ACCESSORY_FRUIT(), FruitType::NUT(), false ],
             [ FruitType::ACCESSORY_FRUIT(), FruitType::BERRY(), false ],
             [ FruitType::ACCESSORY_FRUIT(), FruitType::LEGUME(), false ],
-            [ FruitType::ACCESSORY_FRUIT(), FruitType::ACCESSORY_FRUIT(), false ],
+            [ FruitType::ACCESSORY_FRUIT(), FruitType::ACCESSORY_FRUIT(), true ],
         ];
     }
 
@@ -50,8 +51,8 @@ class IsLessThanTest extends TestCase
      * @param bool $result
      * @return void
      */
-    public function testIsLessThan(FruitType $first, FruitType $second, bool $result): void
+    public function testIsLessThanOrEqualTo(FruitType $first, FruitType $second, bool $result): void
     {
-        $this->assertEquals($result, $first->isLessThan($second));
+        $this->assertEquals($result, $first->isLessThanOrEqualTo($second));
     }
 }

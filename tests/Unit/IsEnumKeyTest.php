@@ -1,8 +1,10 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit;
 
 use Sourceboat\Enumeration\Exceptions\UndefinedMemberException;
+use Sourceboat\Enumeration\Tests\TestCase;
+use Sourceboat\Enumeration\Tests\UserRole;
 
 class IsEnumKeyTest extends TestCase
 {

@@ -1,8 +1,9 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Configurable;
 
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\ConfigurableEnum;
+use Sourceboat\Enumeration\Tests\TestCase;
 
 class ConfigTest extends TestCase
 {

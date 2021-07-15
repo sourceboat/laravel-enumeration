@@ -1,11 +1,12 @@
 <?php
 
-namespace Sourceboat\Enumeration\Tests;
+namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
 use Illuminate\Support\Str;
-use Orchestra\Testbench\TestCase;
+use Sourceboat\Enumeration\Tests\FruitType;
+use Sourceboat\Enumeration\Tests\TestCase;
 
-class GetMembersLessThanTest extends TestCase
+class GetMembersGreaterThanTest extends TestCase
 {
     public function setUp(): void
     {
@@ -26,7 +27,7 @@ class GetMembersLessThanTest extends TestCase
     }
 
     /**
-     * Data provider for the test `testIsLessThan`.
+     * Data provider for the test `testIsGreaterThan`.
      *
      * @return array<mixed>
      */
@@ -35,28 +36,28 @@ class GetMembersLessThanTest extends TestCase
         return [
             [
                 FruitType::NUT(),
-                [],
+                [
+                    Str::upper(FruitType::BERRY) => FruitType::BERRY(),
+                    Str::upper(FruitType::LEGUME) => FruitType::LEGUME(),
+                    Str::upper(FruitType::ACCESSORY_FRUIT) => FruitType::ACCESSORY_FRUIT(),
+                ],
             ],
             [
                 FruitType::BERRY(),
                 [
-                    Str::upper(FruitType::NUT) => FruitType::NUT(),
+                    Str::upper(FruitType::LEGUME) => FruitType::LEGUME(),
+                    Str::upper(FruitType::ACCESSORY_FRUIT) => FruitType::ACCESSORY_FRUIT(),
                 ],
             ],
             [
                 FruitType::LEGUME(),
                 [
-                    Str::upper(FruitType::NUT) => FruitType::NUT(),
-                    Str::upper(FruitType::BERRY) => FruitType::BERRY(),
+                    Str::upper(FruitType::ACCESSORY_FRUIT) => FruitType::ACCESSORY_FRUIT(),
                 ],
             ],
             [
                 FruitType::ACCESSORY_FRUIT(),
-                [
-                    Str::upper(FruitType::NUT) => FruitType::NUT(),
-                    Str::upper(FruitType::BERRY) => FruitType::BERRY(),
-                    Str::upper(FruitType::LEGUME) => FruitType::LEGUME(),
-                ],
+                [],
             ],
         ];
     }
@@ -67,9 +68,9 @@ class GetMembersLessThanTest extends TestCase
      * @param array<mixed> $result
      * @return void
      */
-    public function testGetMembersLessThan(FruitType $member, array $result): void
+    public function testGetMembersGreaterThan(FruitType $member, array $result): void
     {
-        $this->assertEquals($result, FruitType::getMembersLessThan($member));
-        $this->assertEquals($result, $member->getMembersLessThanThis());
+        $this->assertEquals($result, FruitType::getMembersGreaterThan($member));
+        $this->assertEquals($result, $member->getMembersGreaterThanThis());
     }
 }
