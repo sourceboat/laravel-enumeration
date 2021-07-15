@@ -9,44 +9,77 @@ use Sourceboat\Enumeration\Tests\UserRole;
 
 class EnumerationValueMethodsTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
+    /** @var array<\Sourceboat\Enumeration\Rules\EnumerationValue> */
+    private static $rules;
 
-        $this->rule = new EnumerationValue(UserRole::class, UserRole::membersByBlacklist([UserRole::ADMIN()]));
-        $this->rule2 = new EnumerationValue(FruitType::class);
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        self::$rules = [
+            'role' => new EnumerationValue(UserRole::class, UserRole::membersByBlacklist([UserRole::ADMIN()])),
+            'fruit' => new EnumerationValue(FruitType::class),
+        ];
     }
 
-    public function testPasses(): void
+    /** @return array<array<mixed>> */
+    public function passesDataprovider(): array
     {
-        $this->assertTrue($this->rule->passes(null, UserRole::MODERATOR()->value()));
-        $this->assertFalse($this->rule->passes(null, UserRole::ADMIN()->value()));
-        $this->assertTrue($this->rule->passes(null, UserRole::SUPER_ADMIN()->value()));
-        $this->assertTrue($this->rule->passes(null, UserRole::USER()->value()));
-        $this->assertFalse($this->rule->passes(null, 'reporter'));
-        $this->assertFalse($this->rule->passes(null, 5));
+        return [
+            ['role', UserRole::MODERATOR()->value(), true],
+            ['role', UserRole::ADMIN()->value(), false],
+            ['role', UserRole::SUPER_ADMIN()->value(), true],
+            ['role', UserRole::USER()->value(), true],
+            ['role', 'reporter', false],
+            ['role', 5, false],
 
-        $this->assertTrue($this->rule2->passes(null, FruitType::BERRY()->value()));
-        $this->assertTrue($this->rule2->passes(null, FruitType::NUT()->value()));
-        $this->assertTrue($this->rule2->passes(null, FruitType::ACCESSORY_FRUIT()->value()));
-        $this->assertTrue($this->rule2->passes(null, FruitType::LEGUME()->value()));
-        $this->assertFalse($this->rule2->passes(null, 'test'));
-        $this->assertFalse($this->rule2->passes(null, 5));
+            ['fruit', FruitType::BERRY()->value(), true],
+            ['fruit', FruitType::NUT()->value(), true],
+            ['fruit', FruitType::LEGUME()->value(), true],
+            ['fruit', FruitType::ACCESSORY_FRUIT()->value(), true],
+            ['fruit', 'test', false],
+            ['fruit', 5, false],
+        ];
+    }
+
+    /**
+     * @dataProvider passesDataProvider
+     * @param string $ruleKey
+     * @param string|int $value
+     * @param bool $expectation
+     * @return void
+     */
+    public function testPasses(string $ruleKey, $value, bool $expectation): void
+    {
+        $this->assertEquals($expectation, self::$rules[$ruleKey]->passes(null, $value));
     }
 
     public function testMessage(): void
     {
-        $this->assertEquals('The given value is not suitable for :attribute.', $this->rule->message());
+        $this->assertEquals('The given value is not suitable for :attribute.', self::$rules['role']->message());
     }
 
-    public function testSetCaseSensitivity(): void
+    /** @return array<array<mixed>> */
+    public function sensitivityDataProvider(): array
     {
-        $this->assertTrue($this->rule->passes(null, 'moderator'));
-        $this->assertTrue($this->rule->passes(null, 'ModerATor'));
+        return [
+            ['moderator', false, true],
+            ['ModerATor', false, true],
+            ['moderator', true, true],
+            ['ModerATor', true, false],
+        ];
+    }
 
-        $this->rule->setCaseSensitivity(true);
-
-        $this->assertTrue($this->rule->passes(null, 'moderator'));
-        $this->assertFalse($this->rule->passes(null, 'ModerATor'));
+    /**
+     * @dataProvider sensitivityDataProvider
+     * @param string $value
+     * @param bool $caseSensitivity
+     * @param bool $expectation
+     * @return void
+     */
+    public function testSetCaseSensitivity(string $value, bool $caseSensitivity, bool $expectation): void
+    {
+        self::$rules['role']->setCaseSensitivity($caseSensitivity);
+        $this->assertEquals($expectation, self::$rules['role']->passes(null, $value));
     }
 }
