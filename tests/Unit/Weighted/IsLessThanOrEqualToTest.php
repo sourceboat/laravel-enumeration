@@ -2,6 +2,7 @@
 
 namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
+use Sourceboat\Enumeration\Tests\FruitType;
 use Sourceboat\Enumeration\Tests\TestCase;
 
 class IsLessThanOrEqualToTest extends TestCase

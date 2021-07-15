@@ -3,6 +3,7 @@
 namespace Sourceboat\Enumeration\Tests\Unit\Weighted;
 
 use Illuminate\Support\Str;
+use Sourceboat\Enumeration\Tests\FruitType;
 use Sourceboat\Enumeration\Tests\TestCase;
 
 class GetMembersLessThanOrEqualToTest extends TestCase
