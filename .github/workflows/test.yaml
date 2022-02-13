@@ -16,7 +16,7 @@ jobs:
         allowed-to-fail: [false]
         include:
           - php-versions: '8.1'
-            composer-arguments: ['']
+            composer-arguments: ''
             allowed-to-fail: false
 
     steps:
